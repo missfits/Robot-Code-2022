@@ -31,10 +31,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  // private Joystick m_leftStick;
-  // private Joystick m_rightStick;
+  private DifferentialDrive m_robotDrive;
+  //private Joystick m_leftStick;
+  //private Joystick m_rightStick;
   private RobotContainer m_robotContainer;
   public OI oi = new OI();
+  private final MotorController m_leftMotor = new PWMSparkMax(0);
+  private final MotorController m_rightMotor = new PWMSparkMax(1);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -46,6 +49,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     //m_leftStick = new Joystick(1);
     //m_rightStick = new Joystick(2);
+    m_robotDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
+
     
   }
 
@@ -100,7 +105,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    m_robotDrive.tankDrive(oi.leftJoy.getY(), oi.rightJoy.getY());
+  }
 
   @Override
   public void testInit() {
