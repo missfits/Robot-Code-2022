@@ -23,9 +23,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.buttonText;
 
 public class OI {
-    // Create the joystick and the 8 buttons on it
+    // Create the joysticks and controller and buttons
+    Joystick XBOX1 = new Joystick(0);
     Joystick leftJoy = new Joystick(1);
     Joystick rightJoy = new Joystick(2);
+
     Button triggerLeft = new JoystickButton(leftJoy, 1);
     Button  button2Left = new JoystickButton(leftJoy, 2);
     Button  button3Left = new JoystickButton(leftJoy, 3);
@@ -40,10 +42,15 @@ public class OI {
     Button  button12Left = new JoystickButton(leftJoy, 12);
     Button  triggerRight = new JoystickButton(rightJoy, 1);
 
+    Button  Abutton = new JoystickButton(XBOX1, 1);
+    Button  Bbutton = new JoystickButton(XBOX1, 2);
+    Button  Xbutton = new JoystickButton(XBOX1, 3);
+    Button  Ybutton = new JoystickButton(XBOX1, 4);
 
 
     //public Button leftTrigger = new buttonText();
     public OI(){
+      //to test the buttons
       triggerLeft.whenPressed((Command) new PrintCommand("pressed"));
       button2Left.whenPressed((Command) new PrintCommand("pressed2"));
       button3Left.whenPressed((Command) new PrintCommand("pressed3"));
@@ -57,5 +64,10 @@ public class OI {
       button11Left.whenPressed((Command) new PrintCommand("pressed11"));
       button12Left.whenPressed((Command) new PrintCommand("pressed12"));
       triggerRight.whenPressed((Command) new PrintCommand("pressedRight1"));
+
+      Abutton.whenPressed((Command) new PrintCommand("PRESSED A"));
+      Bbutton.whenPressed((Command) new PrintCommand("PRESSED B"));
+      Xbutton.whenPressed((Command) new PrintCommand("PRESSED X"));
+      Ybutton.whenPressed((Command) new PrintCommand("PRESSED Y"));
     }
 }
