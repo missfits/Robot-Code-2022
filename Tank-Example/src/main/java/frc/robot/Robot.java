@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
     //m_leftStick = new Joystick(1);
     //m_rightStick = new Joystick(2);
     m_robotDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
-
+    m_rightMotor.setInverted(true);
     
   }
 
