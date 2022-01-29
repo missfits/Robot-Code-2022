@@ -1,33 +1,19 @@
 
 
 package frc.robot;
-//package edu.wpi.first.wpilibj.buttons;
-import java.lang.Object;
-import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import java.util.function.BooleanSupplier;
-//import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import edu.wpi.first.wpilibj.command.button.JoystickButton;
-//import edu.wpi.first.wpilibj.buttons.Button;
-//import frc.robot.commands.buttonText;
+import frc.robot.commands.IntakeMotorCommand;
 
 public class OI {
     // Create the joysticks and controller and buttons
     Joystick XBOX1 = new Joystick(0);
     Joystick leftJoy = new Joystick(1);
     Joystick rightJoy = new Joystick(2);
-    private final MotorController m_intakeMotor = new PWMSparkMax(2);
+    
 
     final int XBOXbuttonA = 1;
     final int XBOXbuttonB = 2;
@@ -70,23 +56,11 @@ public class OI {
       button12Left.whenPressed((Command) new PrintCommand("pressed12"));
       triggerRight.whenPressed((Command) new PrintCommand("pressedRight1"));
 
-      Abutton.whenPressed((Command) new PrintCommand("PRESSED A"));
+
+      //Abutton.whenPressed((Command) new PrintCommand("PRESSED A"));
+      Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       Bbutton.whenPressed((Command) new PrintCommand("PRESSED B"));
       Xbutton.whenPressed((Command) new PrintCommand("PRESSED X"));
       Ybutton.whenPressed((Command) new PrintCommand("PRESSED Y"));
-    }
-    //reading the button states and for executing button comands
-    public void pollButtons(){
-      boolean isApressed = XBOX1.getRawButton(XBOXbuttonA);
-      boolean isBpressed = XBOX1.getRawButton(XBOXbuttonB);
-      boolean isXpressed = XBOX1.getRawButton(XBOXbuttonX);
-      boolean isYpressed = XBOX1.getRawButton(XBOXbuttonY);
-
-      if (isApressed) {
-        m_intakeMotor.set(0.5);
-      }
-      else {
-        m_intakeMotor.set(0);
-      }
     }
 }

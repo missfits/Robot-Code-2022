@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-//package edu.wpi.first.wpilibj.buttons;
 import java.lang.Object;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -16,12 +15,9 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.function.BooleanSupplier;
-//import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import edu.wpi.first.wpilibj.command.button.JoystickButton;
-//import edu.wpi.first.wpilibj.buttons.Button;
-//import frc.robot.commands.buttonText;
+import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,8 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private DifferentialDrive m_robotDrive;
-  //private Joystick m_leftStick;
-  //private Joystick m_rightStick;
+  public static Intake m_intake = new Intake();
   private RobotContainer m_robotContainer;
   public OI oi = new OI();
   private final MotorController m_leftMotor = new PWMSparkMax(0);
@@ -47,8 +42,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    //m_leftStick = new Joystick(1);
-    //m_rightStick = new Joystick(2);
     m_robotDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
     m_rightMotor.setInverted(true);
     
@@ -118,26 +111,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    oi.pollButtons();
   }
-
-  // public class OI {
-  //   // Create the joystick and the 8 buttons on it
-  //   Joystick leftJoy = new Joystick(1);
-  //   Button button1 = new JoystickButton(leftJoy, 1);
-  //         //  button2 = new JoystickButton(leftJoy, 2),
-  //         //  button3 = new JoystickButton(leftJoy, 3),
-  //         //  button4 = new JoystickButton(leftJoy, 4),
-  //         //  button5 = new JoystickButton(leftJoy, 5),
-  //         //  button6 = new JoystickButton(leftJoy, 6),
-  //         //  button7 = new JoystickButton(leftJoy, 7),
-  //         //  button8 = new JoystickButton(leftJoy, 8);
-
-  //   //public Button leftTrigger = new buttonText();
-  //   public OI(){
-  //     button1.whenPressed((Command) new buttonText());
-  //   }
-  // }
 }
 
 
