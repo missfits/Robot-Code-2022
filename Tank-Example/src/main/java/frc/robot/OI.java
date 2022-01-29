@@ -27,6 +27,12 @@ public class OI {
     Joystick XBOX1 = new Joystick(0);
     Joystick leftJoy = new Joystick(1);
     Joystick rightJoy = new Joystick(2);
+    private final MotorController m_intakeMotor = new PWMSparkMax(2);
+
+    final int XBOXbuttonA = 1;
+    final int XBOXbuttonB = 2;
+    final int XBOXbuttonX = 3;
+    final int XBOXbuttonY = 4;
 
     Button triggerLeft = new JoystickButton(leftJoy, 1);
     Button  button2Left = new JoystickButton(leftJoy, 2);
@@ -42,11 +48,10 @@ public class OI {
     Button  button12Left = new JoystickButton(leftJoy, 12);
     Button  triggerRight = new JoystickButton(rightJoy, 1);
 
-    Button  Abutton = new JoystickButton(XBOX1, 1);
-    Button  Bbutton = new JoystickButton(XBOX1, 2);
-    Button  Xbutton = new JoystickButton(XBOX1, 3);
-    Button  Ybutton = new JoystickButton(XBOX1, 4);
-
+    Button  Abutton = new JoystickButton(XBOX1, XBOXbuttonA);
+    Button  Bbutton = new JoystickButton(XBOX1, XBOXbuttonB);
+    Button  Xbutton = new JoystickButton(XBOX1, XBOXbuttonX);
+    Button  Ybutton = new JoystickButton(XBOX1, XBOXbuttonY);
 
     //public Button leftTrigger = new buttonText();
     public OI(){
@@ -69,5 +74,19 @@ public class OI {
       Bbutton.whenPressed((Command) new PrintCommand("PRESSED B"));
       Xbutton.whenPressed((Command) new PrintCommand("PRESSED X"));
       Ybutton.whenPressed((Command) new PrintCommand("PRESSED Y"));
+    }
+    //reading the button states and for executing button comands
+    public void pollButtons(){
+      boolean isApressed = XBOX1.getRawButton(XBOXbuttonA);
+      boolean isBpressed = XBOX1.getRawButton(XBOXbuttonB);
+      boolean isXpressed = XBOX1.getRawButton(XBOXbuttonX);
+      boolean isYpressed = XBOX1.getRawButton(XBOXbuttonY);
+
+      if (isApressed) {
+        m_intakeMotor.set(0.5);
+      }
+      else {
+        m_intakeMotor.set(0);
+      }
     }
 }

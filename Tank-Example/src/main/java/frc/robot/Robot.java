@@ -117,7 +117,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    oi.pollButtons();
+  }
 
   // public class OI {
   //   // Create the joystick and the 8 buttons on it
