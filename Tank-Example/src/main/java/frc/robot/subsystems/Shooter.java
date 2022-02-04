@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake extends SubsystemBase {
+public class Shooter extends SubsystemBase {
   /** Creates the subsystem that interfaces with the intake motor. */
-  public Intake() {}
-  final MotorController m_intakeMotor = new PWMSparkMax(3);
+  public Shooter() {}
+  final MotorController m_intakeMotor = new PWMSparkMax(2);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -23,18 +23,18 @@ public class Intake extends SubsystemBase {
   }
 
   // Turns on intake motor
-  public void intakeOn(){
+  public void shooterOn(){
     m_intakeMotor.set(0.5);
   }
 
   //Turns off intake motor
-  public void intakeOff(){
+  public void shooterOff(){
     m_intakeMotor.set(0);
   }
 
   //Safety
   protected void finalize(){
-      intakeOff();
+      shooterOff();
   }
 
 

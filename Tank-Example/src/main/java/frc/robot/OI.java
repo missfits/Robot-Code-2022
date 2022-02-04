@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.IntakeMotorCommand;
+import frc.robot.commands.ConveyorMotorCommand;
+import frc.robot. commands.ShooterMotorCommand;
 
 public class OI {
     // Create the joysticks and controller and buttons
@@ -59,8 +61,8 @@ public class OI {
 
       //Abutton.whenPressed((Command) new PrintCommand("PRESSED A"));
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
-      Bbutton.whenPressed((Command) new PrintCommand("PRESSED B"));
-      Xbutton.whenPressed((Command) new PrintCommand("PRESSED X"));
+      Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
+      Xbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
       Ybutton.whenPressed((Command) new PrintCommand("PRESSED Y"));
     }
 }

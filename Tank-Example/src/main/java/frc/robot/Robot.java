@@ -18,6 +18,8 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -29,6 +31,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private DifferentialDrive m_robotDrive;
   public static Intake m_intake = new Intake();
+  public static Conveyor m_conveyor = new Conveyor();
+  public static Shooter m_shooter = new Shooter();
   private RobotContainer m_robotContainer;
   public OI oi = new OI();
   private final MotorController m_leftMotor = new PWMSparkMax(0);
