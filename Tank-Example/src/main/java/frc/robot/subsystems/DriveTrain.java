@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-
+import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
-  private final MotorController m_leftMotor = new PWMSparkMax(0);
-  private final MotorController m_rightMotor = new PWMSparkMax(1);
-  private final MotorController m_leftMotor2 = new PWMSparkMax(5);
-  private final MotorController m_rightMotor2 = new PWMSparkMax(6);
+  private final MotorController m_leftMotor = new PWMSparkMax(Constants.kPwmID_MotorLeft1);
+  private final MotorController m_rightMotor = new PWMSparkMax(Constants.kPwmID_MotorRight1);
+  private final MotorController m_leftMotor2 = new PWMSparkMax(Constants.kPwmID_MotorLeft2);
+  private final MotorController m_rightMotor2 = new PWMSparkMax(Constants.kPwmID_MotorRight2);
   private final MotorControllerGroup m_leftGroup = new MotorControllerGroup(m_leftMotor, m_leftMotor2);
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_rightMotor, m_rightMotor2);
   public static DifferentialDrive m_robotDrive;

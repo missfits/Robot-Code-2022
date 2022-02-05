@@ -1,6 +1,7 @@
 
 
 package frc.robot;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -12,34 +13,28 @@ import frc.robot. commands.ShooterMotorCommand;
 
 public class OI {
     // Create the joysticks and controller and buttons
-    Joystick XBOX1 = new Joystick(0);
-    public Joystick leftJoy = new Joystick(1);
-    public Joystick rightJoy = new Joystick(2);
-    
+    Joystick XBOX1 = new Joystick(Constants.kControllerID_Xbox);
+    public Joystick leftJoy = new Joystick(Constants.kControllerID_DriveLeft);
+    public Joystick rightJoy = new Joystick(Constants.kControllerID_DriveRight);
 
-    final int XBOXbuttonA = 1;
-    final int XBOXbuttonB = 2;
-    final int XBOXbuttonX = 3;
-    final int XBOXbuttonY = 4;
+    Button triggerLeft = new JoystickButton(leftJoy, Constants.kButtonID_Drive1);
+    Button  button2Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive2);
+    Button  button3Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive3);
+    Button  button4Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive4);
+    Button  button5Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive5);
+    Button  button6Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive6);
+    Button  button7Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive7);
+    Button  button8Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive8);
+    Button  button9Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive9);
+    Button  button10Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive10);
+    Button  button11Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive11);
+    Button  button12Left = new JoystickButton(leftJoy, Constants.kButtonID_Drive12);
+    Button  triggerRight = new JoystickButton(rightJoy, Constants.kButtonID_Drive1);
 
-    Button triggerLeft = new JoystickButton(leftJoy, 1);
-    Button  button2Left = new JoystickButton(leftJoy, 2);
-    Button  button3Left = new JoystickButton(leftJoy, 3);
-    Button  button4Left = new JoystickButton(leftJoy, 4);
-    Button  button5Left = new JoystickButton(leftJoy, 5);
-    Button  button6Left = new JoystickButton(leftJoy, 6);
-    Button  button7Left = new JoystickButton(leftJoy, 7);
-    Button  button8Left = new JoystickButton(leftJoy, 8);
-    Button  button9Left = new JoystickButton(leftJoy, 9);
-    Button  button10Left = new JoystickButton(leftJoy, 10);
-    Button  button11Left = new JoystickButton(leftJoy, 11);
-    Button  button12Left = new JoystickButton(leftJoy, 12);
-    Button  triggerRight = new JoystickButton(rightJoy, 1);
-
-    Button  Abutton = new JoystickButton(XBOX1, XBOXbuttonA);
-    Button  Bbutton = new JoystickButton(XBOX1, XBOXbuttonB);
-    Button  Xbutton = new JoystickButton(XBOX1, XBOXbuttonX);
-    Button  Ybutton = new JoystickButton(XBOX1, XBOXbuttonY);
+    Button  Abutton = new JoystickButton(XBOX1, Constants.kButtonID_XboxA);
+    Button  Bbutton = new JoystickButton(XBOX1, Constants.kButtonID_XboxB);
+    Button  Xbutton = new JoystickButton(XBOX1, Constants.kButtonID_XboxX);
+    Button  Ybutton = new JoystickButton(XBOX1, Constants.kButtonID_XboxY);
 
     //public Button leftTrigger = new buttonText();
     public OI(){
