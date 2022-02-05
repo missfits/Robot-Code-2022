@@ -14,10 +14,12 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Intake;
+import frc.robot.commands.TeleopDriveTrain;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
@@ -36,8 +38,9 @@ public class Robot extends TimedRobot {
   public static Shooter m_shooter = new Shooter();
   private RobotContainer m_robotContainer;
   public static OI oi = new OI();
-  
   public static DriveTrain m_driveTrain = new DriveTrain();
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -48,7 +51,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    
+    m_chooser.setDefaultOption("Default auto", new TeleopDriveTrain(m_driveTrain));     // what does this do
     
   }
 
@@ -104,7 +107,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    
+    CommandScheduler.getInstance().run();
   }
 
   @Override

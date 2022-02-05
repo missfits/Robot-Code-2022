@@ -30,7 +30,9 @@ public class TeleopDriveTrain extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    DriveTrain.m_robotDrive.tankDrive(Robot.oi.leftJoy.getY(), Robot.oi.rightJoy.getY());
+  }
 
   // Called once the command ends or is interrupted.
   @Override
