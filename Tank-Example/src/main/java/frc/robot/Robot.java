@@ -30,14 +30,13 @@ import frc.robot.subsystems.Shooter;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private DifferentialDrive m_robotDrive;
+  
   public static Intake m_intake = new Intake();
   public static Conveyor m_conveyor = new Conveyor();
   public static Shooter m_shooter = new Shooter();
   private RobotContainer m_robotContainer;
-  public OI oi = new OI();
-  private final MotorController m_leftMotor = new PWMSparkMax(0);
-  private final MotorController m_rightMotor = new PWMSparkMax(1);
+  public static OI oi = new OI();
+  
   public static DriveTrain m_driveTrain = new DriveTrain();
 
   /**
@@ -49,8 +48,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    m_robotDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
-    m_rightMotor.setInverted(true);
+    
     
   }
 
@@ -106,7 +104,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    m_robotDrive.tankDrive(oi.leftJoy.getY(), oi.rightJoy.getY());
+    
   }
 
   @Override

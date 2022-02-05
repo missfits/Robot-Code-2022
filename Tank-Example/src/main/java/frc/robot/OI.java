@@ -13,8 +13,8 @@ import frc.robot. commands.ShooterMotorCommand;
 public class OI {
     // Create the joysticks and controller and buttons
     Joystick XBOX1 = new Joystick(0);
-    Joystick leftJoy = new Joystick(1);
-    Joystick rightJoy = new Joystick(2);
+    public Joystick leftJoy = new Joystick(1);
+    public Joystick rightJoy = new Joystick(2);
     
 
     final int XBOXbuttonA = 1;
