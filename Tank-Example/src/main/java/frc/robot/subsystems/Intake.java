@@ -4,14 +4,14 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-
+import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   /** Creates the subsystem that interfaces with the intake motor. */
   public Intake() {}
-  final MotorController m_intakeMotor = new PWMSparkMax(3);
+  final MotorController m_intakeMotor = new PWMSparkMax(kPwmID_MotorIntake);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
