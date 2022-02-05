@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -37,6 +38,8 @@ public class Robot extends TimedRobot {
   public OI oi = new OI();
   private final MotorController m_leftMotor = new PWMSparkMax(0);
   private final MotorController m_rightMotor = new PWMSparkMax(1);
+  public static DriveTrain m_driveTrain = new DriveTrain();
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
