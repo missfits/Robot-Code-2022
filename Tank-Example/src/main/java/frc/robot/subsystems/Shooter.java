@@ -10,9 +10,11 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
+  final MotorController m_shooterMotor = new PWMSparkMax(kPwmID_MotorShooter);
+
   /** Creates the subsystem that interfaces with the intake motor. */
   public Shooter() {}
-  final MotorController m_shooterMotor = new PWMSparkMax(kPwmID_MotorShooter);
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

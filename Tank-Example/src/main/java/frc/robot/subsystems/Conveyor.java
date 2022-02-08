@@ -10,9 +10,11 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Conveyor extends SubsystemBase {
+  final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
+  
   /** Creates a new ExampleSubsystem. */
   public Conveyor() {}
-  final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

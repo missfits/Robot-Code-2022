@@ -13,11 +13,12 @@ import frc.robot.commands.ConveyorMotorCommand;
 import frc.robot. commands.ShooterMotorCommand;
 
 public class OI {
-    // Create the joysticks and controller and buttons
+    // Create the joysticks and XBOX controller
     Joystick XBOX1 = new Joystick(kControllerID_Xbox);
     public Joystick leftJoy = new Joystick(kControllerID_DriveLeft);
     public Joystick rightJoy = new Joystick(kControllerID_DriveRight);
 
+    //creating buttons for the joysticks
     Button triggerLeft = new JoystickButton(leftJoy, kButtonID_Drive1);
     Button  button2Left = new JoystickButton(leftJoy, kButtonID_Drive2);
     Button  button3Left = new JoystickButton(leftJoy, kButtonID_Drive3);
@@ -32,6 +33,7 @@ public class OI {
     Button  button12Left = new JoystickButton(leftJoy, kButtonID_Drive12);
     Button  triggerRight = new JoystickButton(rightJoy, kButtonID_Drive1);
 
+    //creating buttons for the XBOX
     Button  Abutton = new JoystickButton(XBOX1, kButtonID_XboxA);
     Button  Bbutton = new JoystickButton(XBOX1, kButtonID_XboxB);
     Button  Xbutton = new JoystickButton(XBOX1, kButtonID_XboxX);
@@ -40,6 +42,7 @@ public class OI {
     //public Button leftTrigger = new buttonText();
     public OI(){
       //to test the buttons
+      /*
       triggerLeft.whenPressed((Command) new PrintCommand("pressed"));
       button2Left.whenPressed((Command) new PrintCommand("pressed2"));
       button3Left.whenPressed((Command) new PrintCommand("pressed3"));
@@ -53,9 +56,13 @@ public class OI {
       button11Left.whenPressed((Command) new PrintCommand("pressed11"));
       button12Left.whenPressed((Command) new PrintCommand("pressed12"));
       triggerRight.whenPressed((Command) new PrintCommand("pressedRight1"));
+      */
 
+      /*Example of a button command which causes something to print when the button is pressed
+      Abutton.whenPressed((Command) new PrintCommand("PRESSED A"));
+      */
 
-      //Abutton.whenPressed((Command) new PrintCommand("PRESSED A"));
+      //connecting buttons to commands to coninuously execute when the button is held down
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
       Xbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);

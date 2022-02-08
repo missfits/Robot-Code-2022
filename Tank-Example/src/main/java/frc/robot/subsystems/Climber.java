@@ -11,11 +11,11 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
   private final MotorController m_climberMotor1 = new PWMSparkMax(kPwmID_MotorClimber1);
   private final MotorController m_climberMotor2 = new PWMSparkMax(kPwmID_MotorClimber2);
   private final MotorControllerGroup m_climberGroup = new MotorControllerGroup(m_climberMotor1, m_climberMotor2);
-
+  
+/** Creates a new ExampleSubsystem. */
   public Climber() {}
   @Override
   public void periodic() {

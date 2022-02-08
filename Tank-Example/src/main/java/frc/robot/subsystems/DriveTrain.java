@@ -20,9 +20,9 @@ public class DriveTrain extends SubsystemBase {
   private final MotorControllerGroup m_leftGroup = new MotorControllerGroup(m_leftMotor, m_leftMotor2);
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_rightMotor, m_rightMotor2);
   public static DifferentialDrive m_robotDrive;
+
   /** Creates a new ExampleSubsystem. */
   public DriveTrain() {
-
     m_robotDrive = new DifferentialDrive(m_leftGroup, m_rightGroup);
     m_rightGroup.setInverted(true);
   }

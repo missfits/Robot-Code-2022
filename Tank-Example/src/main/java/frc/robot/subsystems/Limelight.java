@@ -11,6 +11,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight extends SubsystemBase {
+  
   /** Creates a new ExampleSubsystem. */
   public Limelight() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
