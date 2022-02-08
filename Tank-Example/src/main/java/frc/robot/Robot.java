@@ -25,6 +25,7 @@ import frc.robot.commands.TeleopDriveTrain;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
   
   public static Intake m_intake = new Intake();
   public static Conveyor m_conveyor = new Conveyor();
+  public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
   private RobotContainer m_robotContainer;
   public static OI oi = new OI();

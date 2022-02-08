@@ -21,6 +21,8 @@ public final class Constants {
     public static int kPwmID_MotorConveyor = 4;
     public static int kPwmID_MotorLeft2 = 5;
     public static int kPwmID_MotorRight2 = 6;
+    public static int kPwmID_MotorClimber1 = 7;
+    public static int kPwmID_MotorClimber2 = 8;
 
 
     // Joystick IDs
