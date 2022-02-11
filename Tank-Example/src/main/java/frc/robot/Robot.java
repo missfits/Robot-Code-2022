@@ -21,6 +21,8 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Intake;
+import frc.robot.commands.IntakeMotorCommand;
+import frc.robot.commands.ShooterMotorCommand;
 import frc.robot.commands.TeleopDriveTrain;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.DriveTrain;
@@ -35,6 +37,8 @@ import frc.robot.subsystems.Climber;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  private Command m_testIntakeAutonomous;
+  private Command m_testShooterAutonomous;
   
   //creating all the motors 
   public static Intake m_intake = new Intake();
@@ -58,6 +62,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_chooser.setDefaultOption("Default auto", new TeleopDriveTrain(m_driveTrain));     // what does this do
     CameraServer.startAutomaticCapture();
+    m_testIntakeAutonomous = new IntakeMotorCommand(Robot.m_intake);
+    m_testShooterAutonomous = new ShooterMotorCommand(Robot.m_shooter);
   }
 
   /**
@@ -92,11 +98,20 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    if (m_testIntakeAutonomous != null) {
+      m_testIntakeAutonomous.schedule();
+    }
+    if (m_testShooterAutonomous != null) {
+      m_testShooterAutonomous.schedule();
+    }
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
+
+  }
 
   @Override
   public void teleopInit() {
@@ -107,7 +122,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-  }
+  }  
 
   /** This function is called periodically during operator control. */
   @Override
