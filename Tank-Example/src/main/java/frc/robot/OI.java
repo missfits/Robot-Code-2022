@@ -7,10 +7,7 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.IntakeMotorCommand;
-import frc.robot.commands.ClimberMotorCommand;
-import frc.robot.commands.ConveyorMotorCommand;
-import frc.robot. commands.ShooterMotorCommand;
+import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
 public class OI {
@@ -70,7 +67,8 @@ public class OI {
       Xbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
       Ybutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
 
-      triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
+      //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
+      triggerRight.whileHeld((Command) new DriveStraight(Robot.m_driveTrain), true);
 
     }
 }

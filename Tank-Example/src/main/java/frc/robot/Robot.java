@@ -39,10 +39,10 @@ public class Robot extends TimedRobot {
   public static Conveyor m_conveyor = new Conveyor();
   public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
+  public static DriveTrain m_driveTrain = new DriveTrain();
   private RobotContainer m_robotContainer;
   public static OI oi = new OI();
-  public static DriveTrain m_driveTrain = new DriveTrain();
-  public static Vision m_vision = new Vision();
+  //public static Vision m_vision = new Vision();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -94,10 +94,10 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     if (m_testIntakeAutonomous != null) {
-      m_testIntakeAutonomous.schedule();
+      //m_testIntakeAutonomous.schedule();
     }
     if (m_testShooterAutonomous != null) {
-      m_testShooterAutonomous.schedule();
+      //m_testShooterAutonomous.schedule();
     }
   }
 
