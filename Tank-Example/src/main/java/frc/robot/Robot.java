@@ -20,14 +20,8 @@ import edu.wpi.first.cscore.UsbCamera;
 import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Intake;
-import frc.robot.commands.IntakeMotorCommand;
-import frc.robot.commands.ShooterMotorCommand;
-import frc.robot.commands.TeleopDriveTrain;
-import frc.robot.subsystems.Conveyor;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Climber;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -48,6 +42,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static OI oi = new OI();
   public static DriveTrain m_driveTrain = new DriveTrain();
+  public static Vision m_vision = new Vision();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
