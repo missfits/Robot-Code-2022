@@ -26,7 +26,7 @@ public class DriveTrain extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public DriveTrain() {
     m_robotDrive = new DifferentialDrive(m_leftGroup, m_rightGroup);
-    m_rightGroup.setInverted(true);
+    m_leftGroup.setInverted(true);
     setDefaultCommand(new TeleopDriveTrain(this));
   }
 
