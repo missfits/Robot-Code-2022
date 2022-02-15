@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
   //creating all the motors 
   public static Intake m_intake = new Intake();
   public static Conveyor m_conveyor = new Conveyor();
+  public static VerticalConveyor m_verticalConveyor = new VerticalConveyor();
   public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
   public static DriveTrain m_driveTrain = new DriveTrain();
