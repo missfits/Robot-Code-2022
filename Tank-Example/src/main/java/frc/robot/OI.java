@@ -4,17 +4,24 @@ package frc.robot;
 import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
+
 
 public class OI {
     // Create the joysticks and XBOX controller
     Joystick XBOX1 = new Joystick(kControllerID_Xbox);
     public Joystick leftJoy = new Joystick(kControllerID_DriveLeft);
     public Joystick rightJoy = new Joystick(kControllerID_DriveRight);
+    DoubleSolenoid exampleDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
+    DoubleSolenoid exampleDoublePH = new DoubleSolenoid(9, PneumaticsModuleType.REVPH, 4, 5);
+
 
     //creating buttons for the joysticks
     Button triggerLeft = new JoystickButton(leftJoy, kButtonID_Drive1);
@@ -65,7 +72,9 @@ public class OI {
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
       Xbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
-      Ybutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
+      //Ybutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
+      Ybutton.whileHeld((Command) new PneumaticForward(Robot.m_intake), true);
+  
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraight(Robot.m_driveTrain), true);
