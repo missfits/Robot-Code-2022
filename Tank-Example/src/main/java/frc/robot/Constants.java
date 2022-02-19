@@ -35,6 +35,8 @@ public final class Constants {
     public static int kButtonID_XboxB = 2;
     public static int kButtonID_XboxX = 3;
     public static int kButtonID_XboxY = 4;
+    public static int kButtonID_XboxLB = 5;
+    public static int kButtonID_XboxRB = 6;
 
     // Driving Joystick Button IDs
     public static int kButtonID_Drive1 = 1; // trigger

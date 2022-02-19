@@ -43,6 +43,8 @@ public class OI {
     Button  Bbutton = new JoystickButton(XBOX1, kButtonID_XboxB);
     Button  Xbutton = new JoystickButton(XBOX1, kButtonID_XboxX);
     Button  Ybutton = new JoystickButton(XBOX1, kButtonID_XboxY);
+    Button  LBbutton = new JoystickButton(XBOX1, kButtonID_XboxLB);
+    Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
 
     //public Button leftTrigger = new buttonText();
     public OI(){
@@ -71,13 +73,14 @@ public class OI {
 
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
-      Xbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
-      //Ybutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
+      RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
+      LBbutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
+      Xbutton.whileHeld((Command) new PneumaticReverse(Robot.m_intake), true);
       Ybutton.whileHeld((Command) new PneumaticForward(Robot.m_intake), true);
-  
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraight(Robot.m_driveTrain), true);
 
     }
 }
+ 
