@@ -16,14 +16,16 @@ public final class Constants {
     // PWM Motor IDs
     public static int kPwmID_MotorLeft1 = 0;
     public static int kPwmID_MotorRight1 = 1;
-    public static int kPwmID_MotorShooter = 2;
+    //public static int kPwmID_MotorShooter = 2;
+    public static int kPwmID_MotorShooterTest = 2;
     public static int kPwmID_MotorIntake = 3;
-    public static int kPwmID_MotorConveyor = 4;
+    //public static int kPwmID_MotorConveyor = 4;
+    public static int kPwmID_MotorConveyorTest = 4;
     public static int kPwmID_MotorLeft2 = 5;
     public static int kPwmID_MotorRight2 = 6;
     public static int kPwmID_MotorClimber1 = 7;
     public static int kPwmID_MotorClimber2 = 8;
-    public static int kPwmID_MotorVerticalConveyor = 9;
+    //public static int kPwmID_MotorVerticalConveyor = 9;
 
 
     // Joystick IDs

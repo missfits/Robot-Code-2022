@@ -10,10 +10,13 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Conveyor extends SubsystemBase {
-  final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
+  //final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
+  final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyorTest);
   
   /** Creates a new ExampleSubsystem. */
-  public Conveyor() {}
+  public Conveyor() {
+    //m_conveyorMotor.setInverted(true);
+  }
   
   @Override
   public void periodic() {
@@ -26,9 +29,10 @@ public class Conveyor extends SubsystemBase {
   }
 
   public void conveyorOn(){
-      m_conveyorMotor.set(0.5);
+    m_conveyorMotor.setInverted(true);
+    m_conveyorMotor.set(0.3);
   }
   public void conveyorOff(){
-      m_conveyorMotor.set(0);
+    m_conveyorMotor.set(0);
   }
 }

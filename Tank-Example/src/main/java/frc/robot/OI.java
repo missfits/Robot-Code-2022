@@ -75,8 +75,8 @@ public class OI {
       Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
       RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
       LBbutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
-      Xbutton.whileHeld((Command) new PneumaticReverse(Robot.m_intake), true);
-      Ybutton.whileHeld((Command) new PneumaticForward(Robot.m_intake), true);
+      //Xbutton.whileHeld((Command) new PneumaticReverse(Robot.m_intake), true);
+      //Ybutton.whileHeld((Command) new PneumaticForward(Robot.m_intake), true);
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraight(Robot.m_driveTrain), true);

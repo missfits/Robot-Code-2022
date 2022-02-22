@@ -31,13 +31,13 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private Command m_testIntakeAutonomous;
-  private Command m_testShooterAutonomous;
+  // private Command m_testIntakeAutonomous;
+  // private Command m_testShooterAutonomous;
   
   //creating all the motors 
   public static Intake m_intake = new Intake();
   public static Conveyor m_conveyor = new Conveyor();
-  public static VerticalConveyor m_verticalConveyor = new VerticalConveyor();
+  //public static VerticalConveyor m_verticalConveyor = new VerticalConveyor();
   public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
   public static DriveTrain m_driveTrain = new DriveTrain();
@@ -58,8 +58,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_chooser.setDefaultOption("Default auto", new TeleopDriveTrain(m_driveTrain));     // what does this do
     CameraServer.startAutomaticCapture();
-    m_testIntakeAutonomous = new IntakeMotorCommand(Robot.m_intake);
-    m_testShooterAutonomous = new ShooterMotorCommand(Robot.m_shooter);
+    // m_testIntakeAutonomous = new IntakeMotorCommand(Robot.m_intake);
+    // m_testShooterAutonomous = new ShooterMotorCommand(Robot.m_shooter);
   }
 
   /**
@@ -94,12 +94,12 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    if (m_testIntakeAutonomous != null) {
-      //m_testIntakeAutonomous.schedule();
-    }
-    if (m_testShooterAutonomous != null) {
-      //m_testShooterAutonomous.schedule();
-    }
+    // if (m_testIntakeAutonomous != null) {
+    //   //m_testIntakeAutonomous.schedule();
+    // }
+    // if (m_testShooterAutonomous != null) {
+    //   //m_testShooterAutonomous.schedule();
+    // }
   }
 
   /** This function is called periodically during autonomous. */

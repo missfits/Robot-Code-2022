@@ -31,7 +31,7 @@ public class ShooterMotorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Robot.m_shooter.shooterOn();
+      //Robot.m_shooter.shooterOn();
   }
 
   // Called once the command ends or is interrupted.

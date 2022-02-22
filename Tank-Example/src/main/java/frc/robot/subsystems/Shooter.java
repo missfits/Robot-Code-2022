@@ -10,7 +10,8 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
-  final MotorController m_shooterMotor = new PWMSparkMax(kPwmID_MotorShooter);
+  //final MotorController m_shooterMotor = new PWMSparkMax(kPwmID_MotorShooter);
+  final MotorController m_shooterMotorTest = new PWMSparkMax(kPwmID_MotorShooterTest);
 
   /** Creates the subsystem that interfaces with the intake motor. */
   public Shooter() {}
@@ -26,13 +27,13 @@ public class Shooter extends SubsystemBase {
   }
 
   // Turns on intake motor
-  public void shooterOn(){
-    m_shooterMotor.set(0.5);
-  }
+  // public void shooterOn(){
+  //   m_shooterMotor.set(0.1);
+  // }
 
   //Turns off intake motor
   public void shooterOff(){
-    m_shooterMotor.set(0);
+    m_shooterMotorTest.set(0);
   }
 
   //Safety
