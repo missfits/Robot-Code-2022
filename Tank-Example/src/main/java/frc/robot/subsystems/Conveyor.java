@@ -29,8 +29,7 @@ public class Conveyor extends SubsystemBase {
   }
 
   public void conveyorOn(){
-    m_conveyorMotor.setInverted(true);
-    m_conveyorMotor.set(0.3);
+    m_conveyorMotor.set(0.4);
   }
   public void conveyorOff(){
     m_conveyorMotor.set(0);
