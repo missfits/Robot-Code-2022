@@ -5,14 +5,16 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
-  private final MotorController m_climberMotor1 = new PWMSparkMax(kPwmID_MotorClimber1);
-  private final MotorController m_climberMotor2 = new PWMSparkMax(kPwmID_MotorClimber2);
+  private final MotorController m_climberMotor1 = new CANSparkMax(kCANID_MotorClimber1, MotorType.kBrushless);
+  private final MotorController m_climberMotor2 = new CANSparkMax(kCANID_MotorClimber2, MotorType.kBrushless);
   private final MotorControllerGroup m_climberGroup = new MotorControllerGroup(m_climberMotor1, m_climberMotor2);
   
 /** Creates a new ExampleSubsystem. */

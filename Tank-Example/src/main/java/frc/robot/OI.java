@@ -71,7 +71,7 @@ public class OI {
 
       //connecting buttons to commands to coninuously execute when the button is held down
 
-      Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
+      //Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
       RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
       LBbutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);

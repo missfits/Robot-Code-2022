@@ -4,14 +4,15 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Conveyor extends SubsystemBase {
   //final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
-  final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyorTest);
+  final MotorController m_conveyorMotor = new CANSparkMax(kCANID_MotorConveyorTest, MotorType.kBrushless);
   
   /** Creates a new ExampleSubsystem. */
   public Conveyor() {
@@ -31,6 +32,8 @@ public class Conveyor extends SubsystemBase {
   public void conveyorOn(){
     m_conveyorMotor.set(0.4);
   }
+
+
   public void conveyorOff(){
     m_conveyorMotor.set(0);
   }
