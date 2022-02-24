@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Conveyor extends SubsystemBase {
   //final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
-  final MotorController m_conveyorMotor = new CANSparkMax(kCANID_MotorConveyorTest, MotorType.kBrushless);
+  final MotorController m_conveyorMotor = new CANSparkMax(kCANID_MotorConveyor, MotorType.kBrushless);
   
   /** Creates a new ExampleSubsystem. */
   public Conveyor() {

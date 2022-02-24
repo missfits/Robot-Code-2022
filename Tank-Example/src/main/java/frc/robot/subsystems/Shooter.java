@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   //final MotorController m_shooterMotor = new PWMSparkMax(kPwmID_MotorShooter);
-  final MotorController m_shooterMotorTest = new CANSparkMax(kCANID_MotorShooterTest, MotorType.kBrushless);
+  final MotorController m_shooterMotor = new CANSparkMax(kCANID_MotorShooter, MotorType.kBrushless);
 
   /** Creates the subsystem that interfaces with the intake motor. */
   public Shooter() {}
@@ -34,7 +34,7 @@ public class Shooter extends SubsystemBase {
   
   //Turns off intake motor
   public void shooterOff(){
-    m_shooterMotorTest.set(0);
+    m_shooterMotor.set(0);
   }
 
   //Safety
