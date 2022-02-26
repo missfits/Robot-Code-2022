@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.commands.TeleopDriveTrain;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -38,6 +39,9 @@ public class DriveTrain extends SubsystemBase {
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_rightMotor, m_rightMotor2);
   public static DifferentialDrive m_robotDrive;
 
+  private final PIDController driveTrainPID = new PIDController(0, 0, 0);
+  
+  
 
   /** Creates a new ExampleSubsystem. */
   public DriveTrain() {

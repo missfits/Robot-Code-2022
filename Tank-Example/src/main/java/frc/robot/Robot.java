@@ -5,6 +5,7 @@
 package frc.robot;
 import java.lang.Object;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Joystick;
@@ -89,6 +90,11 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    Timer t = new Timer();
+    t.start();
+    while(t.get() < 5){
+      DriveTrain.m_robotDrive.tankDrive(PID.calculate(m_driveTrain.left1Encoder.getDistance(), 0.5), PID.calculate(m_driveTrain.right1Encoder.getDistance(), 0.5));
+    }
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -106,7 +112,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
-
+    
   }
 
   @Override
