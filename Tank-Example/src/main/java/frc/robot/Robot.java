@@ -21,6 +21,7 @@ import edu.wpi.first.cscore.UsbCamera;
 import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.math.controller.PIDController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -44,6 +45,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
   private RobotContainer m_robotContainer;
   public static OI oi = new OI();
+  private final PIDController PID = new PIDController(0.3, 0, 0);
   //public static Vision m_vision = new Vision();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -92,8 +94,8 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     Timer t = new Timer();
     t.start();
-    while(t.get() < 5){
-      DriveTrain.m_robotDrive.tankDrive(PID.calculate(m_driveTrain.left1Encoder.getDistance(), 0.5), PID.calculate(m_driveTrain.right1Encoder.getDistance(), 0.5));
+    while(t.get() < 2){
+      DriveTrain.m_robotDrive.tankDrive(PID.calculate(m_driveTrain.left1Encoder.getVelocity(), 0.5), PID.calculate(-(m_driveTrain.right1Encoder.getVelocity()), 0.5));
     }
 
     // schedule the autonomous command (example)

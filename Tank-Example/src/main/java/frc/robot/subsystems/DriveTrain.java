@@ -39,7 +39,6 @@ public class DriveTrain extends SubsystemBase {
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_rightMotor, m_rightMotor2);
   public static DifferentialDrive m_robotDrive;
 
-  private final PIDController driveTrainPID = new PIDController(0, 0, 0);
   
   
 
