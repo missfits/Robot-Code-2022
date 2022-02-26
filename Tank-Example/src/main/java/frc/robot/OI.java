@@ -79,7 +79,7 @@ public class OI {
       //Ybutton.whileHeld((Command) new PneumaticForward(Robot.m_intake), true);
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
-      triggerRight.whileHeld((Command) new DriveStraight(Robot.m_driveTrain), true);
+      triggerRight.whileHeld((Command) new DriveStraightCommand(Robot.m_driveTrain), true);
       
 
     }

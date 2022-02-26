@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 /** An example command that uses an example subsystem. */
-public class TeleopDriveTrain extends CommandBase {
+public class TeleopDriveTrainCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
 
@@ -18,7 +18,7 @@ public class TeleopDriveTrain extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopDriveTrain(DriveTrain subsystem) {
+  public TeleopDriveTrainCommand(DriveTrain subsystem) {
     m_driveTrain = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_driveTrain);
