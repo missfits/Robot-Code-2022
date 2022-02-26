@@ -23,10 +23,10 @@ public class DriveTrain extends SubsystemBase {
   private final CANSparkMax right1 = new CANSparkMax(kCANID_MotorRight1, MotorType.kBrushless);
   private final CANSparkMax right2 = new CANSparkMax(kCANID_MotorRight2, MotorType.kBrushless);
 
-  public final SparkMaxRelativeEncoder left1Encoder = (SparkMaxRelativeEncoder) left1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 10);
-  public final SparkMaxRelativeEncoder left2Encoder = (SparkMaxRelativeEncoder) left2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 10);
-  public final SparkMaxRelativeEncoder right1Encoder = (SparkMaxRelativeEncoder) right1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 10);
-  public final SparkMaxRelativeEncoder right2Encoder = (SparkMaxRelativeEncoder) right2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 10);
+  public final SparkMaxRelativeEncoder left1Encoder = (SparkMaxRelativeEncoder) left1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+  public final SparkMaxRelativeEncoder left2Encoder = (SparkMaxRelativeEncoder) left2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+  public final SparkMaxRelativeEncoder right1Encoder = (SparkMaxRelativeEncoder) right1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+  public final SparkMaxRelativeEncoder right2Encoder = (SparkMaxRelativeEncoder) right2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
   private final MotorController m_leftMotor = left1;
   private final MotorController m_leftMotor2 = left2;

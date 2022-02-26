@@ -29,7 +29,7 @@ public class Shooter extends SubsystemBase {
 
   // Turns on intake motor
   public void shooterOn(){
-   m_shooterMotor.set(0.75);
+   m_shooterMotor.set(1);
   }
   
   //Turns off intake motor

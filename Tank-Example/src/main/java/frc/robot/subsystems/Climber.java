@@ -13,9 +13,9 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
-  private final MotorController m_climberMotor1 = new CANSparkMax(kCANID_MotorClimber1, MotorType.kBrushless);
-  private final MotorController m_climberMotor2 = new CANSparkMax(kCANID_MotorClimber2, MotorType.kBrushless);
-  private final MotorControllerGroup m_climberGroup = new MotorControllerGroup(m_climberMotor1, m_climberMotor2);
+  //private final MotorController m_climberMotor1 = new CANSparkMax(kCANID_MotorClimber1, MotorType.kBrushless);
+  //private final MotorController m_climberMotor2 = new CANSparkMax(kCANID_MotorClimber2, MotorType.kBrushless);
+  //private final MotorControllerGroup m_climberGroup = new MotorControllerGroup(m_climberMotor1, m_climberMotor2);
   
 /** Creates a new ExampleSubsystem. */
   public Climber() {}
@@ -30,9 +30,9 @@ public class Climber extends SubsystemBase {
   }
 
   public void climberOn(){
-      m_climberGroup.set(0.5);
+      //m_climberGroup.set(0.5);
   }
   public void climberOff(){
-    m_climberGroup.set(0);
+    //m_climberGroup.set(0);
   }
 }
