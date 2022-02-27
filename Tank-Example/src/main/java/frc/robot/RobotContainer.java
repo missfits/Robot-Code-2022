@@ -22,8 +22,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(
-      new DriveStraightCommand(2, Robot.m_driveTrain),
-      new ShooterMotorCommand(1, Robot.m_shooter));
+      new DriveStraightCommand(2.0, Robot.m_driveTrain),
+      new ShooterMotorCommand(1.0, Robot.m_shooter));
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {
     // Configure the button bindings

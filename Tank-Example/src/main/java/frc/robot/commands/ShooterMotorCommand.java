@@ -14,7 +14,7 @@ public class ShooterMotorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Shooter m_shooter;
   private final Timer timer = new Timer();
-  private final int time;
+  private final double time;
 
   /**
    * Creates a new ExampleCommand.
@@ -22,18 +22,18 @@ public class ShooterMotorCommand extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public ShooterMotorCommand(Shooter subsystem) {
-    m_shooter = subsystem;
-    time = -1;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_shooter);
+    this(-1, subsystem);
   }
-  public ShooterMotorCommand(int time, Shooter subsystem) {
+  public ShooterMotorCommand(double time, Shooter subsystem) {
     m_shooter = subsystem;
     this.time = time;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_shooter);
   }
 
+  protected boolean isTimed() {
+    return this.time > 0.0;
+  }
 
   // Called when the command is initially scheduled.
   @Override
@@ -57,7 +57,7 @@ public class ShooterMotorCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(time > 0 && timer.get() > time){
+    if (isTimed() && timer.get() > this.time){
       return true;
     }
     return false;

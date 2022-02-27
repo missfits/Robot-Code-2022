@@ -13,24 +13,33 @@ public class DriveStraightCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
   private final Timer timer = new Timer();
-  private final int time;
+  private final double time;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new Driving Command
    *
    * @param subsystem The subsystem used by this command.
    */
   public DriveStraightCommand(DriveTrain subsystem) {
-    m_driveTrain = subsystem;
-    time = -1;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_driveTrain);
+    // call the timed constructor with invalid 'time'
+    this(-1, subsystem);
   }
 
-  public DriveStraightCommand(int time, DriveTrain subsystem){
+  /**
+   * Creates a new Timed Driving Command
+   *
+   * @param time The time this command runs (autonomous mode).
+   * @param subsystem The subsystem used by this command.
+   */
+  public DriveStraightCommand(double time, DriveTrain subsystem){
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
     m_driveTrain = subsystem;
     this.time = time;
-    addRequirements(m_driveTrain);
+  }
+
+  protected boolean isTimed() {
+    return this.time > 0.0;
   }
 
   // Called when the command is initially scheduled.
@@ -45,7 +54,7 @@ public class DriveStraightCommand extends CommandBase {
   public void execute() {
     System.out.println(timer.get());
     double timeSoFar = timer.get();
-    double multiplier = (timeSoFar < 0.5)? 2*timeSoFar : 1.0;
+    double multiplier = (isTimed() && timeSoFar < 0.5)? 2 * timeSoFar : 1.0;
     DriveTrain.m_robotDrive.tankDrive(multiplier * -0.7, multiplier * -0.7);
   }
 
@@ -58,7 +67,7 @@ public class DriveStraightCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(time > 0 && timer.get() > time){
+    if (isTimed() && timer.get() > this.time){
       return true;
     }
     return false;
