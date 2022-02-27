@@ -37,17 +37,16 @@ public class DriveStraightCommand extends CommandBase {
   @Override
   public void initialize() {
     timer.reset();
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (time > 0){
-      timer.start();
-      while (timer.get() <= time){
-        DriveTrain.m_robotDrive.tankDrive(-0.7, -0.7);
-      }
-    }
+    System.out.println(timer.get());
+    double timeSoFar = timer.get();
+    double multiplier = (timeSoFar < 0.5)? 2*timeSoFar : 1.0;
+    DriveTrain.m_robotDrive.tankDrive(multiplier * -0.7, multiplier * -0.7);
   }
 
   // Called once the command ends or is interrupted.
@@ -59,6 +58,9 @@ public class DriveStraightCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(time > 0 && timer.get() > time){
+      return true;
+    }
     return false;
   }
 }

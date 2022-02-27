@@ -22,6 +22,7 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -33,7 +34,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private Command m_testAutonomousCommand;
+  
   // private Command m_testIntakeAutonomous;
   // private Command m_testShooterAutonomous;
   
@@ -63,7 +64,6 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_chooser.setDefaultOption("Default auto", new TeleopDriveTrainCommand(m_driveTrain));     // what does this do
     CameraServer.startAutomaticCapture();
-    m_testAutonomousCommand = new AutonomousCommandGroup();
     // m_testIntakeAutonomous = new IntakeMotorCommand(Robot.m_intake);
     // m_testShooterAutonomous = new ShooterMotorCommand(Robot.m_shooter);
   }
@@ -101,9 +101,6 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
-    }
-    if (m_testAutonomousCommand != null) {
-      m_testAutonomousCommand.schedule();
     }
     // if (m_testIntakeAutonomous != null) {
     //   //m_testIntakeAutonomous.schedule();

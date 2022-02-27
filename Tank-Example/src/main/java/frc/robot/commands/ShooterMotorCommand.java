@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -12,6 +13,8 @@ import frc.robot.Robot;
 public class ShooterMotorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Shooter m_shooter;
+  private final Timer timer = new Timer();
+  private final int time;
 
   /**
    * Creates a new ExampleCommand.
@@ -20,13 +23,24 @@ public class ShooterMotorCommand extends CommandBase {
    */
   public ShooterMotorCommand(Shooter subsystem) {
     m_shooter = subsystem;
+    time = -1;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_shooter);
+  }
+  public ShooterMotorCommand(int time, Shooter subsystem) {
+    m_shooter = subsystem;
+    this.time = time;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_shooter);
   }
 
+
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    timer.reset();
+    timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -43,6 +57,9 @@ public class ShooterMotorCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(time > 0 && timer.get() > time){
+      return true;
+    }
     return false;
   }
 }
