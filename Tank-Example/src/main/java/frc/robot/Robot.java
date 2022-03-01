@@ -22,6 +22,7 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -33,6 +34,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  
   // private Command m_testIntakeAutonomous;
   // private Command m_testShooterAutonomous;
   
@@ -46,6 +48,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static OI oi = new OI();
   private final PIDController PID = new PIDController(0.3, 0, 0);
+  public Timer t = new Timer();
   //public static Vision m_vision = new Vision();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -59,7 +62,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    m_chooser.setDefaultOption("Default auto", new TeleopDriveTrain(m_driveTrain));     // what does this do
+    m_chooser.setDefaultOption("Default auto", new TeleopDriveTrainCommand(m_driveTrain));     // what does this do
     CameraServer.startAutomaticCapture();
     // m_testIntakeAutonomous = new IntakeMotorCommand(Robot.m_intake);
     // m_testShooterAutonomous = new ShooterMotorCommand(Robot.m_shooter);
@@ -86,18 +89,15 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    t.reset();
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    Timer t = new Timer();
     t.start();
-    while(t.get() < 2){
-      DriveTrain.m_robotDrive.tankDrive(PID.calculate(m_driveTrain.left1Encoder.getVelocity(), 0.5), PID.calculate(-(m_driveTrain.right1Encoder.getVelocity()), 0.5));
-    }
-
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -114,7 +114,9 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
-    
+    //m_driveTrain.m_robotDrive.tankDrive(-0.5, -0.5);
+    //DriveTrain.m_robotDrive.tankDrive(PID.calculate(m_driveTrain.left1Encoder.getPosition(), 2), PID.calculate(-(m_driveTrain.right1Encoder.getPosition()), 2));
+    //System.out.println("("+m_driveTrain.left1Encoder.getVelocity()+","+(-(m_driveTrain.right1Encoder.getVelocity()))+")");
   }
 
   @Override
@@ -126,13 +128,17 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_driveTrain.left1Encoder.setPosition(0);
+    m_driveTrain.left2Encoder.setPosition(0);
+    m_driveTrain.right1Encoder.setPosition(0);
+    m_driveTrain.right2Encoder.setPosition(0);
   }  
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    System.out.println(m_driveTrain.left1Encoder.getPosition());
+    System.out.println("("+m_driveTrain.left1Encoder.getPosition()+","+(-(m_driveTrain.right1Encoder.getPosition()))+")");
   }
 
   @Override

@@ -6,7 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
-import frc.robot.commands.TeleopDriveTrain;
+import frc.robot.commands.TeleopDriveTrainCommand;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
@@ -46,7 +46,7 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
     m_robotDrive = new DifferentialDrive(m_leftGroup, m_rightGroup);
     m_leftGroup.setInverted(true);
-    setDefaultCommand(new TeleopDriveTrain(this));
+    setDefaultCommand(new TeleopDriveTrainCommand(this));
   }
 
   @Override

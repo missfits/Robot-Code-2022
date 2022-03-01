@@ -4,31 +4,38 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Shooter;
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 
 /** An example command that uses an example subsystem. */
-public class ShooterMotorCommand extends CommandBase {
+public class DriveStraightCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Shooter m_shooter;
+  private final DriveTrain m_driveTrain;
   private final Timer timer = new Timer();
   private final double time;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new Driving Command
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShooterMotorCommand(Shooter subsystem) {
+  public DriveStraightCommand(DriveTrain subsystem) {
+    // call the timed constructor with invalid 'time'
     this(-1, subsystem);
   }
-  public ShooterMotorCommand(double time, Shooter subsystem) {
-    m_shooter = subsystem;
-    this.time = time;
+
+  /**
+   * Creates a new Timed Driving Command
+   *
+   * @param time The time this command runs (autonomous mode).
+   * @param subsystem The subsystem used by this command.
+   */
+  public DriveStraightCommand(double time, DriveTrain subsystem){
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_shooter);
+    addRequirements(subsystem);
+    m_driveTrain = subsystem;
+    this.time = time;
   }
 
   protected boolean isTimed() {
@@ -45,13 +52,16 @@ public class ShooterMotorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Robot.m_shooter.shooterOn();
+    System.out.println(timer.get());
+    double timeSoFar = timer.get();
+    double multiplier = (isTimed() && timeSoFar < 0.5)? 2 * timeSoFar : 1.0;
+    DriveTrain.m_robotDrive.tankDrive(multiplier * -0.7, multiplier * -0.7);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      m_shooter.shooterOff();
+      DriveTrain.m_robotDrive.stopMotor();
   }
 
   // Returns true when the command should end.

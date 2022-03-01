@@ -6,9 +6,10 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 /** An example command that uses an example subsystem. */
-public class DriveStraight extends CommandBase {
+public class TeleopDriveTrainCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrain m_driveTrain;
 
@@ -17,7 +18,7 @@ public class DriveStraight extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveStraight(DriveTrain subsystem) {
+  public TeleopDriveTrainCommand(DriveTrain subsystem) {
     m_driveTrain = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_driveTrain);
@@ -30,13 +31,13 @@ public class DriveStraight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DriveTrain.m_robotDrive.tankDrive(-0.7, -0.7);
+    DriveTrain.m_robotDrive.tankDrive(Robot.oi.leftJoy.getY(), Robot.oi.rightJoy.getY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      DriveTrain.m_robotDrive.stopMotor();
+    DriveTrain.m_robotDrive.stopMotor();
   }
 
   // Returns true when the command should end.
