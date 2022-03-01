@@ -27,12 +27,12 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  // Turns on intake motor
+  // Turns on shooter motor
   public void shooterOn(){
-   m_shooterMotor.set(1);
+   m_shooterMotor.set(0.5);
   }
   
-  //Turns off intake motor
+  //Turns off shooter motor
   public void shooterOff(){
     m_shooterMotor.set(0);
   }
