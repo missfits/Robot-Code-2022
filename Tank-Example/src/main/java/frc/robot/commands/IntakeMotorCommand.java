@@ -5,23 +5,37 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Intake;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-/** An example command that uses an example subsystem. */
+/** A command that turns the intake motor on that uses an the intake subsystem. */
 public class IntakeMotorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;
+  private final Timer timer = new Timer();
+  private final double time;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new Timed Intake Command
    *
+   * @param time The time this command runs (autonomous mode).
    * @param subsystem The subsystem used by this command.
    */
   public IntakeMotorCommand(Intake subsystem) {
-    m_intake = subsystem;
+    // call the timed constructor with invalid 'time'
+    this(-1, subsystem);
+  }
+
+  public IntakeMotorCommand(double time, Intake subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_intake);
+    addRequirements(subsystem);
+    m_intake = subsystem;
+    this.time = time;
+  }
+
+  protected boolean isTimed() {
+    return this.time > 0.0;
   }
 
   // Called when the command is initially scheduled.
@@ -43,6 +57,9 @@ public class IntakeMotorCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (isTimed() && timer.get() > this.time){
+      return true;
+    }
     return false;
   }
 }

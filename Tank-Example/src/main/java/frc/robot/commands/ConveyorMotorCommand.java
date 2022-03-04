@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Conveyor;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -12,26 +13,45 @@ import frc.robot.Robot;
 public class ConveyorMotorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Conveyor m_conveyor;
+  private final Timer timer = new Timer();
+  private final double time;
 
-  /**
-   * Creates a new ExampleCommand.
+  
+  public ConveyorMotorCommand(Conveyor subsystem) {
+    // call the timed constructor with invalid 'time'
+    this(-1, subsystem);
+  }
+
+     /**
+   * Creates a new Timed Conveyor Command
    *
+   * @param time The time this command runs (autonomous mode).
    * @param subsystem The subsystem used by this command.
    */
-  public ConveyorMotorCommand(Conveyor subsystem) {
-    m_conveyor = subsystem;
+
+  public ConveyorMotorCommand(double time, Conveyor subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_conveyor);
+    addRequirements(subsystem);
+    m_conveyor = subsystem;
+    this.time = time;
+  }
+
+  protected boolean isTimed() {
+    return this.time > 0.0;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    timer.reset();
+    timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
       m_conveyor.conveyorOn();
+      System.out.println(timer.get());
   }
 
   // Called once the command ends or is interrupted.
@@ -43,6 +63,9 @@ public class ConveyorMotorCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (isTimed() && timer.get() > this.time){
+      return true;
+    }
     return false;
   }
 }

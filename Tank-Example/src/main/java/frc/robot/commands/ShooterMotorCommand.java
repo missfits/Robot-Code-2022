@@ -17,13 +17,21 @@ public class ShooterMotorCommand extends CommandBase {
   private final double time;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new ShooterCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
   public ShooterMotorCommand(Shooter subsystem) {
     this(-1, subsystem);
   }
+
+   /**
+   * Creates a new Timed Shooter Command
+   *
+   * @param time The time this command runs (autonomous mode).
+   * @param subsystem The subsystem used by this command.
+   */
+  
   public ShooterMotorCommand(double time, Shooter subsystem) {
     m_shooter = subsystem;
     this.time = time;

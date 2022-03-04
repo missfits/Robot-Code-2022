@@ -6,10 +6,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.commands.ConveyorMotorCommand;
 import frc.robot.commands.DriveStraightCommand;
+import frc.robot.commands.IntakeDown;
+import frc.robot.commands.IntakeMotorCommand;
+import frc.robot.commands.IntakeUp;
 import frc.robot.commands.ShooterMotorCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 /**
@@ -21,9 +27,22 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(
+  public SendableChooser<Command> m_chooser = new SendableChooser<>();
+  public static SequentialCommandGroup m_autoCommand1 = new SequentialCommandGroup(
       new DriveStraightCommand(2.0, Robot.m_driveTrain),
       new ShooterMotorCommand(1.0, Robot.m_shooter));
+  
+  public static SequentialCommandGroup m_autoCommand2 = new SequentialCommandGroup(
+    new DriveStraightCommand(2.0, Robot.m_driveTrain),
+    new IntakeDown(Robot.m_intake),
+    new ParallelCommandGroup(
+      new DriveStraightCommand(0.5, Robot.m_driveTrain),
+      new IntakeMotorCommand(3.0, Robot.m_intake),
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0, Robot.m_shooter)),
+    new IntakeUp(Robot.m_intake));
+    
+  public static Command m_autoCommand3 = new IntakeMotorCommand(1.0, Robot.m_intake);
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {
     // Configure the button bindings
@@ -44,7 +63,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    //return m_autoCommand1;
+    //Poll Sendable Chooser
+    return m_chooser.getSelected();
   }
 }

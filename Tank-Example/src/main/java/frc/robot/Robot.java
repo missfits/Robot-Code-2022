@@ -35,13 +35,9 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   
-  // private Command m_testIntakeAutonomous;
-  // private Command m_testShooterAutonomous;
-  
   //creating all the motors 
   public static Intake m_intake = new Intake();
   public static Conveyor m_conveyor = new Conveyor();
-  //public static VerticalConveyor m_verticalConveyor = new VerticalConveyor();
   public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
   public static DriveTrain m_driveTrain = new DriveTrain();
@@ -49,9 +45,6 @@ public class Robot extends TimedRobot {
   public static OI oi = new OI();
   private final PIDController PID = new PIDController(0.3, 0, 0);
   public Timer t = new Timer();
-  //public static Vision m_vision = new Vision();
-
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -60,12 +53,16 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    m_chooser.setDefaultOption("Default auto", new TeleopDriveTrainCommand(m_driveTrain));     // what does this do
+    // autonomous chooser on the dashboard.
+    // Sendable Chooser for autonomous - allows us to select a routine
+    // Add commands to the autonomous command chooser
+    m_robotContainer.m_chooser.setDefaultOption("testAuto1", RobotContainer.m_autoCommand1);
+    m_robotContainer.m_chooser.addOption("testAuto2", RobotContainer.m_autoCommand2);
+    m_robotContainer.m_chooser.addOption("testAuto3", RobotContainer.m_autoCommand3);
+    // Put the chooser on the dashboard
+    SmartDashboard.putData(m_robotContainer.m_chooser);   // what does this do
     CameraServer.startAutomaticCapture();
-    // m_testIntakeAutonomous = new IntakeMotorCommand(Robot.m_intake);
-    // m_testShooterAutonomous = new ShooterMotorCommand(Robot.m_shooter);
   }
 
   /**
@@ -98,16 +95,10 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     t.start();
-    // schedule the autonomous command (example)
+    // schedule the autonomous command
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    // if (m_testIntakeAutonomous != null) {
-    //   //m_testIntakeAutonomous.schedule();
-    // }
-    // if (m_testShooterAutonomous != null) {
-    //   //m_testShooterAutonomous.schedule();
-    // }
   }
 
   /** This function is called periodically during autonomous. */

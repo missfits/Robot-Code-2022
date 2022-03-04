@@ -54,6 +54,7 @@ public class DriveStraightCommand extends CommandBase {
   public void execute() {
     System.out.println(timer.get());
     double timeSoFar = timer.get();
+    //Creates ramp for motors
     double multiplier = (isTimed() && timeSoFar < 0.5)? 2 * timeSoFar : 1.0;
     DriveTrain.m_robotDrive.tankDrive(multiplier * -0.7, multiplier * -0.7);
   }
