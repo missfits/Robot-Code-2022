@@ -3,7 +3,9 @@
 package frc.robot;
 import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -46,6 +48,12 @@ public class OI {
     Button  LBbutton = new JoystickButton(XBOX1, kButtonID_XboxLB);
     Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
 
+    public static SequentialCommandGroup shootCommand = new SequentialCommandGroup(
+      new ShooterMotorCommand(0.5, Robot.m_shooter),
+      new ParallelCommandGroup(
+      new ConveyorMotorCommand(Robot.m_conveyor),
+      new ShooterMotorCommand(Robot.m_shooter)));
+
     //public Button leftTrigger = new buttonText();
     public OI(){
       //to test the buttons
@@ -72,8 +80,10 @@ public class OI {
       //connecting buttons to commands to coninuously execute when the button is held down
 
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
-      Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
-      RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
+      //Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
+      Bbutton.whileHeld((Command) shootCommand, true);
+      //RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
+      RBbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
       LBbutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
       //Down
       Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);

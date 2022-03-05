@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxRelativeEncoder;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 import static frc.robot.Constants.*;
 
 public class DriveTrain extends SubsystemBase {
@@ -40,7 +40,7 @@ public class DriveTrain extends SubsystemBase {
   private final MotorControllerGroup m_rightGroup = new MotorControllerGroup(m_rightMotor, m_rightMotor2);
   public static DifferentialDrive m_robotDrive;
 
-  final AHRS navX = new AHRS(Port.kMXP);
+  //final AHRS navX = new AHRS(Port.kMXP);
 
   
   
@@ -62,8 +62,8 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public double getAngle() {
-    return navX.getAngle();
-  }
+  // public double getAngle() {
+  //   return navX.getAngle();
+  // }
 
 }
