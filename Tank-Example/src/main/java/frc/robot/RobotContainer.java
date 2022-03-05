@@ -13,7 +13,7 @@ import frc.robot.commands.IntakeDown;
 import frc.robot.commands.IntakeMotorCommand;
 import frc.robot.commands.IntakeUp;
 import frc.robot.commands.ShooterMotorCommand;
-//import frc.robot.commands.Turn;
+import frc.robot.commands.Turn;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -55,10 +55,10 @@ public class RobotContainer {
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
       new ShooterMotorCommand(3.0, Robot.m_shooter)));
 
-  // public static SequentialCommandGroup m_autoCommand5 = new SequentialCommandGroup(
-  //   new DriveStraightCommand(1.0, Robot.m_driveTrain),
-  //   new Turn(180),
-  //   new DriveStraightCommand(1.0, Robot.m_driveTrain));
+  public static SequentialCommandGroup m_autoCommand5 = new SequentialCommandGroup(
+    new DriveStraightCommand(1.0, Robot.m_driveTrain),
+    new Turn(180),
+    new DriveStraightCommand(1.0, Robot.m_driveTrain));
 
     
   // The container for the robot. Contains subsystems, OI devices, and commands. 
