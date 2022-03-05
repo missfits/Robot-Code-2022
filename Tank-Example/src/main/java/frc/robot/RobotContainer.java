@@ -43,6 +43,17 @@ public class RobotContainer {
     new IntakeUp(Robot.m_intake));
     
   public static Command m_autoCommand3 = new IntakeMotorCommand(1.0, Robot.m_intake);
+
+  public static SequentialCommandGroup m_autoCommand4 = new SequentialCommandGroup(
+    new DriveStraightCommand(1.0, Robot.m_driveTrain),
+    new IntakeDown(Robot.m_intake),
+    new ParallelCommandGroup(
+      new DriveStraightCommand(1.0, Robot.m_driveTrain),
+      new IntakeMotorCommand(1.0, Robot.m_intake)),
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0, Robot.m_shooter)));
+    
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {
     // Configure the button bindings

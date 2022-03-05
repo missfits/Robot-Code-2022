@@ -35,7 +35,7 @@ public class Intake extends SubsystemBase {
 
   // Turns on intake motor
   public void intakeOn(){
-    m_intakeMotor.set(0.23);
+    m_intakeMotor.set(0.6);
   }
 
   //Turns off intake motor

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxRelativeEncoder;
+import com.kauailabs.navx.frc.AHRS;
 import static frc.robot.Constants.*;
 
 public class DriveTrain extends SubsystemBase {
