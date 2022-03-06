@@ -24,6 +24,8 @@ public final class Constants {
     public static int kCANID_MotorClimber1 = 8;
     public static int kCANID_MotorClimber2 = 9;
 
+    public static int kMXP = 13;
+
 
     // Joystick IDs
     public static int kControllerID_Xbox = 0;
