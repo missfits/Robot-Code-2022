@@ -84,7 +84,7 @@ public class OI {
       Bbutton.whileHeld((Command) shootCommand, true);
       //RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
       RBbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
-      LBbutton.whileHeld((Command) new Turn(180), true);
+      LBbutton.whileHeld((Command) new ClimberMotorCommand(Robot.m_climber), true);
       //Down
       Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
       //Up
