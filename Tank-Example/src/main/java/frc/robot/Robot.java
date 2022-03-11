@@ -57,11 +57,16 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     // Sendable Chooser for autonomous - allows us to select a routine
     // Add commands to the autonomous command chooser
+    /*
     m_robotContainer.m_chooser.setDefaultOption("testAuto1", RobotContainer.m_autoCommand1);
     m_robotContainer.m_chooser.addOption("testAuto2", RobotContainer.m_autoCommand2);
     m_robotContainer.m_chooser.addOption("testAuto3", RobotContainer.m_autoCommand3);
     m_robotContainer.m_chooser.addOption("testAuto4", RobotContainer.m_autoCommand4);
     m_robotContainer.m_chooser.addOption("testAuto5", RobotContainer.m_autoCommand5);
+    */
+    m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Normal Intake and Shoot)", RobotContainer.m_autoStraightDriveIntake);
+    m_robotContainer.m_chooser.setDefaultOption("Drive Forward", RobotContainer.m_autoJustDrive);
+    m_robotContainer.m_chooser.setDefaultOption("Delayed Drive", RobotContainer.m_autoDelayDrive);
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
     CameraServer.startAutomaticCapture();

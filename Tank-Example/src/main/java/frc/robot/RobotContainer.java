@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.ConveyorMotorCommand;
 import frc.robot.commands.DriveStraightCommand;
+import frc.robot.commands.DriveReverseCommand;
+import frc.robot.commands.DelayCommand;
 import frc.robot.commands.IntakeDown;
 import frc.robot.commands.IntakeMotorCommand;
 import frc.robot.commands.IntakeUp;
@@ -18,6 +20,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.OI;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -29,6 +32,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public SendableChooser<Command> m_chooser = new SendableChooser<>();
+  /*
   public static SequentialCommandGroup m_autoCommand1 = new SequentialCommandGroup(
       new DriveStraightCommand(2.0, Robot.m_driveTrain),
       new ShooterMotorCommand(1.0, Robot.m_shooter));
@@ -59,7 +63,26 @@ public class RobotContainer {
     new DriveStraightCommand(1.0, Robot.m_driveTrain),
     new Turn(180),
     new DriveStraightCommand(1.0, Robot.m_driveTrain));
-
+*/
+  public static SequentialCommandGroup m_autoStraightDriveIntake = new SequentialCommandGroup(
+    new  IntakeDown(Robot.m_intake),
+    new ParallelCommandGroup(
+      new DriveStraightCommand(2.0, Robot.m_driveTrain),
+      new IntakeMotorCommand(Robot.m_intake)),
+    new DriveReverseCommand(2.0, Robot.m_driveTrain),
+    new ShooterMotorCommand(0.5, Robot.m_shooter),
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter))
+  );
+  public static SequentialCommandGroup m_autoJustDrive = new SequentialCommandGroup(
+    new  DriveStraightCommand(2.0, Robot.m_driveTrain)
+    );
+  public static SequentialCommandGroup m_autoDelayDrive = new SequentialCommandGroup(
+    new  DriveStraightCommand(1.0, Robot.m_driveTrain),
+    new DelayCommand(2.0),
+    new  DriveStraightCommand(1.0, Robot.m_driveTrain)
+    );
     
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {
