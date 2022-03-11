@@ -46,14 +46,20 @@ public class OI {
     Button  Xbutton = new JoystickButton(XBOX1, kButtonID_XboxX);
     Button  Ybutton = new JoystickButton(XBOX1, kButtonID_XboxY);
     Button  LBbutton = new JoystickButton(XBOX1, kButtonID_XboxLB);
+    Button  Backbutton = new JoystickButton(XBOX1, kButtonID_XboxBack);
     Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
 
     public static SequentialCommandGroup shootCommand = new SequentialCommandGroup(
       new ShooterMotorCommand(0.5, Robot.m_shooter),
       new ParallelCommandGroup(
       new ConveyorMotorCommand(Robot.m_conveyor),
-      new ShooterMotorCommand(Robot.m_shooter)));
-
+      new ShooterMotorCommand(Robot.m_shooter))
+      );
+    
+      //for the purpuses of testing why the robot keeps disabling
+    public static ParallelCommandGroup allCommands = new ParallelCommandGroup (
+      shootCommand, new IntakeMotorCommand(Robot.m_intake)
+    );
     //public Button leftTrigger = new buttonText();
     public OI(){
       //to test the buttons
@@ -89,6 +95,8 @@ public class OI {
       Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
       //Up
       Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
+      //everything
+      Backbutton.whileHeld((Command) allCommands, true);
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraightCommand(Robot.m_driveTrain), true);
