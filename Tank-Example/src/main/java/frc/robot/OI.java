@@ -47,6 +47,7 @@ public class OI {
     Button  Ybutton = new JoystickButton(XBOX1, kButtonID_XboxY);
     Button  LBbutton = new JoystickButton(XBOX1, kButtonID_XboxLB);
     Button  Backbutton = new JoystickButton(XBOX1, kButtonID_XboxBack);
+    Button  Startbutton = new JoystickButton(XBOX1, kButtonID_XboxStart);
     Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
 
     public static SequentialCommandGroup shootCommand = new SequentialCommandGroup(
@@ -85,26 +86,33 @@ public class OI {
 
       //connecting buttons to commands to coninuously execute when the button is held down
 
-      Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       //Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
-      Bbutton.whileHeld((Command) new ParallelCommandGroup(
-        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-        new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
+  
       //RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
-      RBbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
+     
       //LBbutton.whileHeld((Command) new Turn(180), true);
-      LBbutton.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
-      //Down
-      Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
-      //Up
-      Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
-      //everything
-      Backbutton.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
+  
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraightCommand(Robot.m_driveTrain), true);
       
-
+      //buttons according to Elizabeth
+      //intake motor
+      Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
+      //shooting motor + vertical conveyor
+      Bbutton.whileHeld((Command) new ParallelCommandGroup(
+        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+        new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
+      //reverse intake
+      Startbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
+      //climber up
+      LBbutton.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
+      //climber down
+      RBbutton.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
+      //intake down
+      Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
+      //intake up
+      Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
     }
 }
  
