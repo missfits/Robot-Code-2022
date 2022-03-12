@@ -67,22 +67,45 @@ public class RobotContainer {
   public static SequentialCommandGroup m_autoStraightDriveIntake = new SequentialCommandGroup(
     new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
-      new DriveStraightCommand(2.0, Robot.m_driveTrain),
-      new IntakeMotorCommand(Robot.m_intake)),
-    new DriveReverseCommand(2.0, Robot.m_driveTrain),
+      new DriveStraightCommand(1.0, Robot.m_driveTrain),
+      new IntakeMotorCommand(1.0, Robot.m_intake)),
+    new DriveReverseCommand(0.5, Robot.m_driveTrain),
     new ShooterMotorCommand(0.5, Robot.m_shooter),
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-      new ShooterMotorCommand(3.0,Robot.m_shooter))
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake))
   );
   public static SequentialCommandGroup m_autoJustDrive = new SequentialCommandGroup(
-    new  DriveStraightCommand(2.0, Robot.m_driveTrain)
+    new  DriveStraightCommand(1.0, Robot.m_driveTrain)
     );
   public static SequentialCommandGroup m_autoDelayDrive = new SequentialCommandGroup(
     new  DriveStraightCommand(1.0, Robot.m_driveTrain),
-    new DelayCommand(2.0),
+    new  DelayCommand(5.0),
     new  DriveStraightCommand(1.0, Robot.m_driveTrain)
     );
+  public static SequentialCommandGroup m_autoBasicDrive = new SequentialCommandGroup(
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter)),
+      new  DriveStraightCommand(1.0, Robot.m_driveTrain)
+  );
+  public static SequentialCommandGroup m_autoShootFirst = new SequentialCommandGroup(
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake)),
+      new  IntakeDown(Robot.m_intake),
+    new ParallelCommandGroup(
+      new DriveStraightCommand(1.5, Robot.m_driveTrain),
+      new IntakeMotorCommand(1.5, Robot.m_intake)),
+    new DriveReverseCommand(1.0, Robot.m_driveTrain),
+    new ShooterMotorCommand(0.5, Robot.m_shooter),
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake))
+  );
     
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {

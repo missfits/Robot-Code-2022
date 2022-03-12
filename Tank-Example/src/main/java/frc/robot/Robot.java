@@ -67,6 +67,9 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Normal Intake and Shoot)", RobotContainer.m_autoStraightDriveIntake);
     m_robotContainer.m_chooser.setDefaultOption("Drive Forward", RobotContainer.m_autoJustDrive);
     m_robotContainer.m_chooser.setDefaultOption("Delayed Drive", RobotContainer.m_autoDelayDrive);
+    m_robotContainer.m_chooser.setDefaultOption("Basic Shoot then Drive", RobotContainer.m_autoBasicDrive);
+    m_robotContainer.m_chooser.setDefaultOption("Shoot First", RobotContainer.m_autoShootFirst);
+
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
     CameraServer.startAutomaticCapture();

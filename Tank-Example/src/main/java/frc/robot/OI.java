@@ -87,16 +87,19 @@ public class OI {
 
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       //Bbutton.whileHeld((Command) new ConveyorMotorCommand(Robot.m_conveyor), true);
-      Bbutton.whileHeld((Command) shootCommand, true);
+      Bbutton.whileHeld((Command) new ParallelCommandGroup(
+        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+        new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
       //RBbutton.whileHeld((Command) new ShooterMotorCommand(Robot.m_shooter), true);
       RBbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
-      LBbutton.whileHeld((Command) new Turn(180), true);
+      //LBbutton.whileHeld((Command) new Turn(180), true);
+      LBbutton.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
       //Down
       Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
       //Up
       Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
       //everything
-      Backbutton.whileHeld((Command) allCommands, true);
+      Backbutton.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraightCommand(Robot.m_driveTrain), true);
