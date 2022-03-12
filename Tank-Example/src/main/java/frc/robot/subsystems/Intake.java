@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Intake extends SubsystemBase {
   final MotorController m_intakeMotor = new CANSparkMax(kCANID_MotorIntake, MotorType.kBrushless);
   final Compressor m_compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-  final DoubleSolenoid exampleDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
+  final DoubleSolenoid exampleDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 7, 6);
 
   /** Creates the subsystem that interfaces with the intake motor. */
   public Intake() {

@@ -139,7 +139,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    System.out.println("("+m_driveTrain.left1Encoder.getPosition()+","+(-(m_driveTrain.right1Encoder.getPosition()))+")");
+    //System.out.println("("+m_driveTrain.left1Encoder.getPosition()+","+(-(m_driveTrain.right1Encoder.getPosition()))+")");
   }
 
   @Override
