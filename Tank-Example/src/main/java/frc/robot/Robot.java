@@ -25,6 +25,9 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -45,6 +48,8 @@ public class Robot extends TimedRobot {
   public static OI oi = new OI();
   private final PIDController PID = new PIDController(0.3, 0, 0);
   public Timer t = new Timer();
+  
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -72,6 +77,7 @@ public class Robot extends TimedRobot {
 
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
+    CameraServer.startAutomaticCapture();
     CameraServer.startAutomaticCapture();
   }
 
@@ -139,6 +145,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
+    SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
+    SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
+    SmartDashboard.putNumber("Climber Encoder", m_climber.climberEncoder.getPosition());
+    //SmartDashboard.putBoolean("Compressor On", m_intake.compressorOn());
     //System.out.println("("+m_driveTrain.left1Encoder.getPosition()+","+(-(m_driveTrain.right1Encoder.getPosition()))+")");
   }
 

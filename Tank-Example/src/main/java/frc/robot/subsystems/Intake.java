@@ -58,6 +58,13 @@ public class Intake extends SubsystemBase {
   public void pneumaticOff(){
     exampleDoublePCM.set(kOff);
   }
+
+  // public boolean compressorOn(){
+  //   if(m_compressor.getPressureSwitchValue()){
+  //     return false;
+  //   }
+  //   return true;
+  // }
   //Safety
   protected void finalize(){
       intakeOff();

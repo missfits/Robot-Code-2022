@@ -95,24 +95,46 @@ public class OI {
 
       //triggerLeft.whenPressed((Command) new PrintCommand(Double.toString(Robot.m_vision.getDistance())));
       triggerRight.whileHeld((Command) new DriveStraightCommand(Robot.m_driveTrain), true);
+      triggerLeft.whileHeld((Command) new DriveReverseCommand(Robot.m_driveTrain), true);
       
       //buttons according to Elizabeth
       //intake motor
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
+      
       //shooting motor + vertical conveyor
       Bbutton.whileHeld((Command) new ParallelCommandGroup(
         new ConveyorMotorCommand(3.0, Robot.m_conveyor),
         new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
+      
       //reverse intake
       Startbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
+      
       //climber up
       LBbutton.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
+      
       //climber down
       RBbutton.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
+      
       //intake down
       Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
+      
       //intake up
       Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
+      
+
+      button2Left.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
+      button3Left.whileHeld((Command) new ParallelCommandGroup(
+        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+        new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
+      button4Left.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
+      button5Left.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
+      button6Left.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
+      button7Left.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
+      button8Left.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
+      button9Left.whileHeld((Command) new ParallelCommandGroup(
+        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+        new setSpeedShooter(0.4, 3.0, Robot.m_shooter)), true);
+      button10Left.whileHeld((Command) new Turn(180), true);
     }
 }
  

@@ -31,10 +31,17 @@ public class Shooter extends SubsystemBase {
   public void shooterOn(){
    m_shooterMotor.set(0.85);
   }
+  public void setSpeed(double speed){
+    m_shooterMotor.set(speed);
+   }
   
   //Turns off shooter motor
   public void shooterOff(){
     m_shooterMotor.set(0);
+  }
+
+  public double getSpeed(){
+    return m_shooterMotor.get();
   }
 
   //Safety
