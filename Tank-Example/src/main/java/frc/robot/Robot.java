@@ -77,8 +77,8 @@ public class Robot extends TimedRobot {
 
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
-    CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture(0);
+    CameraServer.startAutomaticCapture(1);
   }
 
   /**
