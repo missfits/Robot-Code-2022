@@ -51,22 +51,11 @@ public class OI {
     Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
 
     public static SequentialCommandGroup shootCommand = new SequentialCommandGroup(
-      new ShooterMotorCommand(0.25, Robot.m_shooter),
+      new ShooterMotorCommand(0.5, Robot.m_shooter),
       new ParallelCommandGroup(
       new ConveyorMotorCommand(Robot.m_conveyor),
       new ShooterMotorCommand(Robot.m_shooter))
       );
-
-    public static SequentialCommandGroup fullShootCommand = new SequentialCommandGroup(
-      new ShooterMotorCommand(0.25, Robot.m_shooter),
-      new ParallelCommandGroup(
-      new ConveyorMotorCommand(0.5, Robot.m_conveyor),
-      new ShooterMotorCommand(0.5, Robot.m_shooter)),
-      new ParallelCommandGroup(
-      new ConveyorMotorCommand(Robot.m_conveyor),
-      new ShooterMotorCommand(Robot.m_shooter),
-      new IntakeMotorCommand(Robot.m_intake))
-    );
     
       //for the purpuses of testing why the robot keeps disabling
     public static ParallelCommandGroup allCommands = new ParallelCommandGroup (
@@ -113,14 +102,13 @@ public class OI {
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       
       //shooting motor + vertical conveyor
-      Backbutton.whileHeld((Command) shootCommand, true);
-
-      //shooting motor + vertical conveyor + intake
-      Bbutton.whileHeld((Command) fullShootCommand, true);
+      Bbutton.whileHeld((Command) new ParallelCommandGroup(
+        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+        new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
       
       //reverse intake
       Startbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
-
+      
       //climber up
       LBbutton.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
       
