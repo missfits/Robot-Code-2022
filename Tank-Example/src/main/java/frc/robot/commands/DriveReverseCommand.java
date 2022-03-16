@@ -52,7 +52,7 @@ public class DriveReverseCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println(timer.get());
+    // System.out.println(timer.get());
     double timeSoFar = timer.get();
     //Creates ramp for motors
     double multiplier = (isTimed() && timeSoFar < 0.5)? 2 * timeSoFar : 1.0;

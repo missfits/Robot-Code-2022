@@ -23,7 +23,7 @@ public class DelayCommand extends CommandBase{
       }
       @Override
       public void execute() {
-        System.out.println(timer.get());
+        // System.out.println(timer.get());
       }
     
     @Override
