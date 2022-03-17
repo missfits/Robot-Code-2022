@@ -50,17 +50,12 @@ public class OI {
     Button  Startbutton = new JoystickButton(XBOX1, kButtonID_XboxStart);
     Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
 
-    public static SequentialCommandGroup shootCommand = new SequentialCommandGroup(
-      new ShooterMotorCommand(0.5, Robot.m_shooter),
-      new ParallelCommandGroup(
-      new ConveyorMotorCommand(Robot.m_conveyor),
-      new ShooterMotorCommand(Robot.m_shooter))
-      );
+    
     
       //for the purpuses of testing why the robot keeps disabling
-    public static ParallelCommandGroup allCommands = new ParallelCommandGroup (
-      shootCommand, new IntakeMotorCommand(Robot.m_intake)
-    );
+    // public static ParallelCommandGroup allCommands = new ParallelCommandGroup (
+    //   shootCommand, new IntakeMotorCommand(Robot.m_intake)
+    // );
     //public Button leftTrigger = new buttonText();
     public OI(){
       //to test the buttons
@@ -110,6 +105,13 @@ public class OI {
       new ConveyorMotorCommand(0.5, Robot.m_conveyor),
       new ShooterMotorCommand(0.5, Robot.m_shooter),
       new IntakeMotorCommand(0.5, Robot.m_intake))
+      );
+
+      SequentialCommandGroup shootCommand = new SequentialCommandGroup(
+      new ShooterMotorCommand(0.5, Robot.m_shooter),
+      new ParallelCommandGroup(
+      new ConveyorMotorCommand(Robot.m_conveyor),
+      new ShooterMotorCommand(Robot.m_shooter))
       );
       //shooting motor + vertical conveyor + intake
       Bbutton.whileHeld((Command) fullShootCommand);
