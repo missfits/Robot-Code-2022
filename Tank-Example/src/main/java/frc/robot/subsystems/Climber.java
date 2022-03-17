@@ -35,16 +35,28 @@ public class Climber extends SubsystemBase {
   }
 
   public void climberUp(){
-    while(climberEncoder.getPosition() < 100){
+    if(climberEncoder.getPosition() < -20){
       m_climberMotor1.set(0.5);
     }
+    else{
+      m_climberMotor1.set(0);
+    }
   }
+
   public void climberDown(){
-    while(climberEncoder.getPosition() >= 0){
+    if(climberEncoder.getPosition() > -112){
       m_climberMotor1.set(-0.5);
+    }
+    else{
+      m_climberMotor1.set(0);
     }
   } 
   public void climberOff(){
     m_climberMotor1.set(0);
   }
+
+  public void climberLow(){
+    m_climberMotor1.set(0.1);
+  }
+
 }

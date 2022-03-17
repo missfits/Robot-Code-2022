@@ -26,7 +26,10 @@ public class ClimberDownCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    //m_climber.climberEncoder.setPosition(100);
+    //System.out.println("Hello");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

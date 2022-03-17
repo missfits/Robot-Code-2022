@@ -97,9 +97,9 @@ public class RobotContainer {
       new IntakeMotorCommand(1.0, Robot.m_intake)),
       new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
-      new DriveStraightCommand(1.5, Robot.m_driveTrain),
-      new IntakeMotorCommand(1.5, Robot.m_intake)),
-    new DriveReverseCommand(1.0, Robot.m_driveTrain),
+      new DriveStraightCommand(2.0, Robot.m_driveTrain),
+      new IntakeMotorCommand(2.0, Robot.m_intake)),
+    new DriveReverseCommand(2.0, Robot.m_driveTrain),
     new ShooterMotorCommand(0.5, Robot.m_shooter),
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
@@ -127,9 +127,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-
-    // An ExampleCommand will run in autonomous
-    //return m_autoCommand1;
     //Poll Sendable Chooser
     return m_chooser.getSelected();
   }

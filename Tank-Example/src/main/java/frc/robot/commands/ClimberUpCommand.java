@@ -33,6 +33,7 @@ public class ClimberUpCommand extends CommandBase {
   @Override
   public void initialize() {
     //m_climber.climberEncoder.setPosition(0);
+    //System.out.println("Hello2");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

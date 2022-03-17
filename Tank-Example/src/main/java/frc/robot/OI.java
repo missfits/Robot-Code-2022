@@ -100,14 +100,25 @@ public class OI {
       //buttons according to Elizabeth
       //intake motor
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
-      
-      //shooting motor + vertical conveyor
-      Bbutton.whileHeld((Command) new ParallelCommandGroup(
-        new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-        new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
+     
+      //sequential command group for the Bbutton
+      SequentialCommandGroup fullShootCommand= new SequentialCommandGroup(
+        new ShooterMotorCommand(0.25, Robot.m_shooter), 
+        new ParallelCommandGroup(
+          new ConveyorMotorCommand(0.5, Robot.m_conveyor),new ShooterMotorCommand(0.5, Robot.m_shooter)),
+          new ParallelCommandGroup(
+      new ConveyorMotorCommand(0.5, Robot.m_conveyor),
+      new ShooterMotorCommand(0.5, Robot.m_shooter),
+      new IntakeMotorCommand(0.5, Robot.m_intake))
+      );
+      //shooting motor + vertical conveyor + intake
+      Bbutton.whileHeld((Command) fullShootCommand);
       
       //reverse intake
       Startbutton.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
+      
+      //vert converyor and shoot only
+      Backbutton.whileHeld((Command) shootCommand);
       
       //climber up
       LBbutton.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
@@ -120,6 +131,8 @@ public class OI {
       
       //intake up
       Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
+
+      //Ybutton.whileHeld((Command) new IntakeUp(Robot.m, true);
       
 
       button2Left.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
