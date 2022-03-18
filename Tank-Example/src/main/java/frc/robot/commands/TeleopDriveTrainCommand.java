@@ -32,6 +32,7 @@ public class TeleopDriveTrainCommand extends CommandBase {
   @Override
   public void execute() {
     DriveTrain.m_robotDrive.tankDrive(Robot.oi.leftJoy.getY(), Robot.oi.rightJoy.getY());
+    DriveTrain.m_robotDrive.tankDrive((Robot.oi.xboxcontroller.getLeftY())/2, (Robot.oi.xboxcontroller.getRightY())/2);
   }
 
   // Called once the command ends or is interrupted.

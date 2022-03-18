@@ -106,6 +106,23 @@ public class RobotContainer {
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake))
   );
+
+  public static SequentialCommandGroup m_autoTowardsWall = new SequentialCommandGroup(
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake)),
+      new  IntakeDown(Robot.m_intake),
+    new ParallelCommandGroup(
+      new DriveStraightCommand(Robot.m_driveTrain),
+      new IntakeMotorCommand(Robot.m_intake)),
+    new DriveReverseCommand(1.5, Robot.m_driveTrain),
+    new ShooterMotorCommand(0.5, Robot.m_shooter),
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake))
+  );
     
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {

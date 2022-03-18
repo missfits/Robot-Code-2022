@@ -49,7 +49,8 @@ public class Robot extends TimedRobot {
   public static OI oi = new OI();
   private final PIDController PID = new PIDController(0.3, 0, 0);
   public Timer t = new Timer();
-  
+  public int rightEncoderStart = 0;
+  public int leftEncoderStart = 0;
 
 
   /**
@@ -74,6 +75,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.setDefaultOption("Drive Forward", RobotContainer.m_autoJustDrive);
     m_robotContainer.m_chooser.setDefaultOption("Delayed Drive", RobotContainer.m_autoDelayDrive);
     m_robotContainer.m_chooser.setDefaultOption("Shoot then Drive", RobotContainer.m_autoBasicDrive);
+    m_robotContainer.m_chooser.setDefaultOption("Towards Wall", RobotContainer.m_autoTowardsWall);
     m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);
 
     // Put the chooser on the dashboard
@@ -112,6 +114,11 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     t.start();
+    m_driveTrain.left1Encoder.setPosition(0);
+    m_driveTrain.left2Encoder.setPosition(0);
+    m_driveTrain.right1Encoder.setPosition(0);
+    m_driveTrain.right2Encoder.setPosition(0);
+
     // schedule the autonomous command
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -122,6 +129,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
+    SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
+    SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
+    SmartDashboard.putNumber("Climber Encoder", m_climber.climberEncoder.getPosition());
     //m_driveTrain.m_robotDrive.tankDrive(-0.5, -0.5);
     //DriveTrain.m_robotDrive.tankDrive(PID.calculate(m_driveTrain.left1Encoder.getPosition(), 2), PID.calculate(-(m_driveTrain.right1Encoder.getPosition()), 2));
     //System.out.println("("+m_driveTrain.left1Encoder.getVelocity()+","+(-(m_driveTrain.right1Encoder.getVelocity()))+")");

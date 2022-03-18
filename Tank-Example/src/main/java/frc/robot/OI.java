@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
@@ -49,6 +50,11 @@ public class OI {
     Button  Backbutton = new JoystickButton(XBOX1, kButtonID_XboxBack);
     Button  Startbutton = new JoystickButton(XBOX1, kButtonID_XboxStart);
     Button  RBbutton = new JoystickButton(XBOX1, kButtonID_XboxRB);
+
+    //xbox joysticks
+    public XboxController xboxcontroller = new XboxController(0);
+    //public Joystick leftJoyXBOX = new Joystick(kControllerID_DriveLeftXBOX);
+    //public Joystick rightJoyXBOX = new Joystick(kControllerID_DriveRightXBOX);
 
     
     
