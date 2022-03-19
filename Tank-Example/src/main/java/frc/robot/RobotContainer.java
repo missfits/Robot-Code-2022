@@ -125,6 +125,9 @@ public class RobotContainer {
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake))
   );
+  public static SequentialCommandGroup m_autoDoNothing = new SequentialCommandGroup(
+
+  );
     
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {

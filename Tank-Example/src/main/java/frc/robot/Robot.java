@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.setDefaultOption("Shoot then Drive", RobotContainer.m_autoBasicDrive);
     m_robotContainer.m_chooser.setDefaultOption("Towards Wall", RobotContainer.m_autoTowardsWall);
     m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);
+    m_robotContainer.m_chooser.setDefaultOption("Do Nothing", RobotContainer.m_autoDoNothing);
 
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
