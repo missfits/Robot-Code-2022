@@ -57,7 +57,7 @@ public class DriveStraightDistance extends CommandBase {
     double timeSoFar = timer.get();
     //Creates ramp for motors
     double multiplier = (timeSoFar < 0.5)? 2 * timeSoFar : 1.0;
-    if(_isForward = true){
+    if(_isForward == true){
         DriveTrain.m_robotDrive.tankDrive(multiplier * -0.7, multiplier * -0.7);
     }
     else{

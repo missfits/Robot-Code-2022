@@ -78,11 +78,15 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.setDefaultOption("Towards Wall", RobotContainer.m_autoTowardsWall);
     m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);
     m_robotContainer.m_chooser.setDefaultOption("Do Nothing", RobotContainer.m_autoDoNothing);
+    m_robotContainer.m_chooser.setDefaultOption("Taxi", RobotContainer.m_autoTaxi);
 
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
     CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
+    SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
+    SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
+    SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
+    SmartDashboard.putNumber("Climber Encoder", m_climber.climberEncoder.getPosition());
   }
 
   /**
@@ -99,6 +103,10 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
+    SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
+    SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
+    SmartDashboard.putNumber("Climber Encoder", m_climber.climberEncoder.getPosition());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
