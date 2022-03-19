@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.ConveyorMotorCommand;
 import frc.robot.commands.DriveStraightCommand;
+import frc.robot.commands.DriveStraightDistance;
 import frc.robot.commands.DriveReverseCommand;
 import frc.robot.commands.DelayCommand;
 import frc.robot.commands.IntakeDown;
@@ -114,9 +115,10 @@ public class RobotContainer {
       new IntakeMotorCommand(1.0, Robot.m_intake)),
       new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
-      new DriveStraightCommand(Robot.m_driveTrain),
+      //40 is 6ft
+      new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
       new IntakeMotorCommand(Robot.m_intake)),
-    new DriveReverseCommand(1.5, Robot.m_driveTrain),
+      new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
     new ShooterMotorCommand(0.5, Robot.m_shooter),
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
