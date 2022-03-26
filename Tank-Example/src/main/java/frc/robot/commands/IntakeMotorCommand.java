@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-/** A command that turns the intake motor on that uses an the intake subsystem. */
+/** IntakeMotorCommand uses Intake subsystem. */
 public class IntakeMotorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;

@@ -22,18 +22,19 @@ public final class Constants {
     public static int kCANID_MotorConveyor = 6;
     public static int kCANID_MotorShooter = 7;
     public static int kCANID_MotorClimber1 = 8;
-    //public static int kCANID_MotorClimber2 = 9;
+    //public static int kCANID_MotorClimber2 = 9; 
 
     public static int kMXP = 13;
 
 
-    // Joystick IDs
+    // IDs for the XBOX port, joystick IDs, joystick IDs on the XBOX
     public static int kControllerID_Xbox = 0;
     public static int kControllerID_DriveLeft = 1;
     public static int kControllerID_DriveRight = 2;
     public static int kControllerID_DriveLeftXBOX = 1;
     public static int kControllerID_DriveRightXBOX = 2;
 
+    //XBOX button IDs
     public static int kButtonID_XboxA = 1;
     public static int kButtonID_XboxB = 2;
     public static int kButtonID_XboxX = 3;

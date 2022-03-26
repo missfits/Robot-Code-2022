@@ -4,7 +4,7 @@ package frc.robot;
 import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
+//import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
-import frc.robot.subsystems.*;
-import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
+//import frc.robot.subsystems.*;
+//import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 
 
 public class OI {
@@ -22,6 +22,7 @@ public class OI {
     Joystick XBOX1 = new Joystick(kControllerID_Xbox);
     public Joystick leftJoy = new Joystick(kControllerID_DriveLeft);
     public Joystick rightJoy = new Joystick(kControllerID_DriveRight);
+    //creates solenoids
     DoubleSolenoid exampleDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
     DoubleSolenoid exampleDoublePH = new DoubleSolenoid(9, PneumaticsModuleType.REVPH, 4, 5);
 
@@ -98,6 +99,9 @@ public class OI {
       triggerRight.whileHeld((Command) new DriveStraightCommand(Robot.m_driveTrain), true);
       triggerLeft.whileHeld((Command) new DriveReverseCommand(Robot.m_driveTrain), true);
       
+
+
+
       //buttons according to Elizabeth
       //intake motor
       Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
@@ -140,21 +144,37 @@ public class OI {
       //intake up
       Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
 
-      //Ybutton.whileHeld((Command) new IntakeUp(Robot.m, true);
-      
-
+      //BACKUP BUTTONS ON THE JOYSTICKS
+     
+      //run intake
       button2Left.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
+      
+      //run shoot sequence
       button3Left.whileHeld((Command) new ParallelCommandGroup(
         new ConveyorMotorCommand(3.0, Robot.m_conveyor),
         new ShooterMotorCommand(3.0,Robot.m_shooter)), true);
+    
+        //run intake in reverse
       button4Left.whileHeld((Command) new IntakeReverseCommand(Robot.m_intake), true);
+     
+      //run climber up
       button5Left.whileHeld((Command) new ClimberUpCommand(Robot.m_climber), true);
+      
+      //run climber down
       button6Left.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
+      
+      //intake down
       button7Left.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
+      
+      //intake up
       button8Left.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
+      
+      //shooter command special speed
       button9Left.whileHeld((Command) new ParallelCommandGroup(
         new ConveyorMotorCommand(3.0, Robot.m_conveyor),
         new setSpeedShooter(0.4, 3.0, Robot.m_shooter)), true);
+      
+        //turn ccommand (turns robot using drivetrain motors)
       button10Left.whileHeld((Command) new Turn(180), true);
     }
 }

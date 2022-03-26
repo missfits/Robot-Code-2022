@@ -14,7 +14,7 @@ public class Shooter extends SubsystemBase {
   //final MotorController m_shooterMotor = new PWMSparkMax(kPwmID_MotorShooter);
   final MotorController m_shooterMotor = new CANSparkMax(kCANID_MotorShooter, MotorType.kBrushless);
 
-  /** Creates the subsystem that interfaces with the intake motor. */
+  /** Creates the subsystem that interfaces with the shooter motor. */
   public Shooter() {}
   
   @Override
@@ -31,6 +31,8 @@ public class Shooter extends SubsystemBase {
   public void shooterOn(){
    m_shooterMotor.set(0.85);
   }
+
+  //sets the shooter motor speed
   public void setSpeed(double speed){
     m_shooterMotor.set(speed);
    }
@@ -40,6 +42,7 @@ public class Shooter extends SubsystemBase {
     m_shooterMotor.set(0);
   }
 
+  //returns shooter motor speed
   public double getSpeed(){
     return m_shooterMotor.get();
   }

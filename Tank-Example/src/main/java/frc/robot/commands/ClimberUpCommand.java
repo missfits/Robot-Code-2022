@@ -7,13 +7,13 @@ package frc.robot.commands;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.SparkMaxRelativeEncoder;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import com.revrobotics.SparkMaxRelativeEncoder;
 
-/** An example command that uses an example subsystem. */
+/** ClimberUpCommand uses ClimberSubsystem */
 public class ClimberUpCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Climber m_climber;
@@ -32,8 +32,6 @@ public class ClimberUpCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_climber.climberEncoder.setPosition(0);
-    //System.out.println("Hello2");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

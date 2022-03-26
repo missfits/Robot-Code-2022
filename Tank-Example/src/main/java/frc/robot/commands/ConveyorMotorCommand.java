@@ -7,9 +7,9 @@ package frc.robot.commands;
 import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+//import frc.robot.Robot;
 
-/** An example command that uses an example subsystem. */
+/** ConveyorMotorCommand usses ConveyorMotor subsystem */
 public class ConveyorMotorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Conveyor m_conveyor;
@@ -29,6 +29,7 @@ public class ConveyorMotorCommand extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
 
+   //for running conveyor motor for a specified amount of time
   public ConveyorMotorCommand(double time, Conveyor subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -36,6 +37,7 @@ public class ConveyorMotorCommand extends CommandBase {
     this.time = time;
   }
 
+  //for timing
   protected boolean isTimed() {
     return this.time > 0.0;
   }
@@ -51,7 +53,6 @@ public class ConveyorMotorCommand extends CommandBase {
   @Override
   public void execute() {
       m_conveyor.conveyorOn();
-      System.out.println(timer.get());
   }
 
   // Called once the command ends or is interrupted.

@@ -8,10 +8,10 @@ import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
-/** An example command that uses an example subsystem. */
+/** DriveReverseCommand uses DriveTrain subsystem. */
 public class DriveReverseCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DriveTrain m_driveTrain;
+  private final DriveTrain m_driveTrain; //although this is not used the class cant function without it
   private final Timer timer = new Timer();
   private final double time;
 
@@ -38,6 +38,7 @@ public class DriveReverseCommand extends CommandBase {
     this.time = time;
   }
 
+  //for timing
   protected boolean isTimed() {
     return this.time > 0.0;
   }
@@ -52,7 +53,6 @@ public class DriveReverseCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // System.out.println(timer.get());
     double timeSoFar = timer.get();
     //Creates ramp for motors
     double multiplier = (isTimed() && timeSoFar < 0.5)? 2 * timeSoFar : 1.0;

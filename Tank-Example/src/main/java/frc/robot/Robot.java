@@ -3,31 +3,31 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import java.lang.Object;
+//import java.lang.Object;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+//import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.GenericHID;
+//import edu.wpi.first.wpilibj.TimedRobot;
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+//import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.UsbCamera;
-import java.util.function.BooleanSupplier;
-import edu.wpi.first.wpilibj2.command.button.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.*;
+//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+//import edu.wpi.first.cameraserver.CameraServer;
+//import edu.wpi.first.cscore.UsbCamera;
+//import java.util.function.BooleanSupplier;
+//import edu.wpi.first.wpilibj2.command.button.Button;
+//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+//import edu.wpi.first.math.controller.PIDController;
+//import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+//import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -37,7 +37,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 // Add low power mode for climber at 0.1
 public class Robot extends TimedRobot {
+  //initalize autonomousCommands, RobotContainer, OI, and Timer
   private Command m_autonomousCommand;
+  private RobotContainer m_robotContainer;
+  public static OI oi = new OI();
+  public Timer t = new Timer();
   
   //creating all the motors 
   public static Intake m_intake = new Intake();
@@ -45,10 +49,10 @@ public class Robot extends TimedRobot {
   public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
   public static DriveTrain m_driveTrain = new DriveTrain();
-  private RobotContainer m_robotContainer;
-  public static OI oi = new OI();
-  private final PIDController PID = new PIDController(0.3, 0, 0);
-  public Timer t = new Timer();
+  
+  //private final PIDController PID = new PIDController(0.3, 0, 0); //unused PID Controller
+
+  //set encoder inital values to zero
   public int rightEncoderStart = 0;
   public int leftEncoderStart = 0;
 
@@ -59,26 +63,23 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    // autonomous chooser on the dashboard.
+  
     // Sendable Chooser for autonomous - allows us to select a routine
     // Add commands to the autonomous command chooser
-    /*
-    m_robotContainer.m_chooser.setDefaultOption("testAuto1", RobotContainer.m_autoCommand1);
-    m_robotContainer.m_chooser.addOption("testAuto2", RobotContainer.m_autoCommand2);
-    m_robotContainer.m_chooser.addOption("testAuto3", RobotContainer.m_autoCommand3);
-    m_robotContainer.m_chooser.addOption("testAuto4", RobotContainer.m_autoCommand4);
-    m_robotContainer.m_chooser.addOption("testAuto5", RobotContainer.m_autoCommand5);
-    */
-    m_robotContainer.m_chooser.addOption("Two Ball Auto (Shoot Last)", RobotContainer.m_autoStraightDriveIntake);
-    m_robotContainer.m_chooser.addOption("Drive Forward", RobotContainer.m_autoJustDrive);
-    m_robotContainer.m_chooser.addOption("Delayed Drive", RobotContainer.m_autoDelayDrive);
-    m_robotContainer.m_chooser.addOption("Shoot then Drive", RobotContainer.m_autoBasicDrive);
-    m_robotContainer.m_chooser.addOption("Do Nothing", RobotContainer.m_autoDoNothing);
-    m_robotContainer.m_chooser.addOption("Taxi", RobotContainer.m_autoTaxi);
-    m_robotContainer.m_chooser.addOption("Towards Wall", RobotContainer.m_autoTowardsWall);
-    m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);
+
+
+    //adding options for autonomous viewable on the dashboard of driverstation
+    m_robotContainer.m_chooser.addOption("Two Ball Auto (Shoot Last)", RobotContainer.m_autoStraightDriveIntake); // intake ball, drives, shoots
+    m_robotContainer.m_chooser.addOption("Drive Forward", RobotContainer.m_autoJustDrive); // drives only
+    m_robotContainer.m_chooser.addOption("Delayed Drive", RobotContainer.m_autoDelayDrive);  // waits then drives
+    m_robotContainer.m_chooser.addOption("Shoot then Drive", RobotContainer.m_autoBasicDrive); // drive + shoot
+    m_robotContainer.m_chooser.addOption("Do Nothing", RobotContainer.m_autoDoNothing); //does nothing
+    m_robotContainer.m_chooser.addOption("Taxi", RobotContainer.m_autoTaxi); //shoots, taxis out
+    m_robotContainer.m_chooser.addOption("Towards Wall", RobotContainer.m_autoTowardsWall); //shoot, drive (twards wall), intake, drive back, shoot
+    //default option when code is deployed will be the one that runs 
+    m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);   //(RELIABLE TWO BALL AUTO) shoot, drive, intake, drive back, shoot
     
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);

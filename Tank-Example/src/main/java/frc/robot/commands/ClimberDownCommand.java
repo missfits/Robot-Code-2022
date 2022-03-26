@@ -8,13 +8,13 @@ import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-/** An example command that uses an example subsystem. */
+/** Climber down command uses Climber subsystem */
 public class ClimberDownCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Climber m_climber;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new ClimberDownCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
@@ -27,17 +27,17 @@ public class ClimberDownCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_climber.climberEncoder.setPosition(100);
-    //System.out.println("Hello");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
+  //theoretically keeps the climber retracted
   @Override
   public void execute() {
       Robot.m_climber.climberDown();
   }
 
   // Called once the command ends or is interrupted.
+  //stops the climber motor
   @Override
   public void end(boolean interrupted) {
       Robot.m_climber.climberOff();

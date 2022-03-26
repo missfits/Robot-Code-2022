@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.Timer;
 import com.revrobotics.SparkMaxRelativeEncoder;
 import java.lang.Math;
 
-/** An example command that uses an example subsystem. */
+/** DriveStraightDistance command uses DriveTrain subsystem */
 public class DriveStraightDistance extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DriveTrain m_driveTrain;
+  private final DriveTrain m_driveTrain; //although it is unused, the class cannot function without it
   private final Timer timer = new Timer();
-  //private final double time;
+  //create variable for the class
   private final double targetDistance;
   private double leftDistance;
   private double rightDistance;
@@ -28,6 +28,7 @@ public class DriveStraightDistance extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
  
+   //drive straight for specified distance
   public DriveStraightDistance(double distance, SparkMaxRelativeEncoder left, SparkMaxRelativeEncoder right, DriveTrain subsystem, boolean isForward){
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -53,7 +54,6 @@ public class DriveStraightDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // System.out.println(timer.get());
     double timeSoFar = timer.get();
     //Creates ramp for motors
     double multiplier = (timeSoFar < 0.5)? 2 * timeSoFar : 1.0;
@@ -72,6 +72,7 @@ public class DriveStraightDistance extends CommandBase {
   }
 
   // Returns true when the command should end.
+  //command ends when target distance is traveled
   @Override
   public boolean isFinished() {
     double leftDistanceTraveled = Math.abs(_left.getPosition() - leftDistance);

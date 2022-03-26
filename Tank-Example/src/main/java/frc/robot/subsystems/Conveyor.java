@@ -14,7 +14,7 @@ public class Conveyor extends SubsystemBase {
   //final MotorController m_conveyorMotor = new PWMSparkMax(kPwmID_MotorConveyor);
   final MotorController m_conveyorMotor = new CANSparkMax(kCANID_MotorConveyor, MotorType.kBrushless);
   
-  /** Creates a new ExampleSubsystem. */
+  /** Conveyor Subsystem */
   public Conveyor() {
     //m_conveyorMotor.setInverted(true);
   }
@@ -29,11 +29,12 @@ public class Conveyor extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
+  //set motor speed to maximum forward
   public void conveyorOn(){
     m_conveyorMotor.set(1);
   }
 
-
+  //set motor speed to zero (motor off)
   public void conveyorOff(){
     m_conveyorMotor.set(0);
   }

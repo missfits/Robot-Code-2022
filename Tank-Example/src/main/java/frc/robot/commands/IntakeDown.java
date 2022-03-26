@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Robot;
 
-/** An example command that uses an example subsystem. */
+/** IntakeDown command uses Intake subsystem */
 public class IntakeDown extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;

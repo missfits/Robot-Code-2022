@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Robot;
 
-/** An example command that uses an example subsystem. */
+/** IntakeUp command uses IntakeSubsystem */
 public class IntakeUp extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;
@@ -13,7 +13,7 @@ public class IntakeUp extends CommandBase {
   private final double time;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new IntakeUp command.
    *
    * @param subsystem The subsystem used by this command.
    */

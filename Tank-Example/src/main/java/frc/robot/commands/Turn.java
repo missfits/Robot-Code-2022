@@ -8,15 +8,15 @@
 package frc.robot.commands;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+/*  TurnCommand uses DriveTrain subsystem  */
 public class Turn extends CommandBase {
     private double angle;
     public Turn(double a) {
         angle = a;
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
        }
     
  // Called just before this Command runs the first time

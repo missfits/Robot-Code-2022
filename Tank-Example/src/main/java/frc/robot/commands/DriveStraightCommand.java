@@ -8,10 +8,10 @@ import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
-/** An example command that uses an example subsystem. */
+/** DriveStraightCommand usues DriveTrain subsystem */
 public class DriveStraightCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DriveTrain m_driveTrain;
+  private final DriveTrain m_driveTrain; //although it is unused, the class cannot function without it
   private final Timer timer = new Timer();
   private final double time;
 
@@ -65,7 +65,7 @@ public class DriveStraightCommand extends CommandBase {
       DriveTrain.m_robotDrive.stopMotor();
   }
 
-  // Returns true when the command should end.
+  // Returns true when the command should end. (when indicated time is reached)
   @Override
   public boolean isFinished() {
     if (isTimed() && timer.get() > this.time){
