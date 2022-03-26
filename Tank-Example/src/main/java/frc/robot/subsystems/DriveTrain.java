@@ -19,7 +19,6 @@ import com.kauailabs.navx.frc.AHRS;
 import static frc.robot.Constants.*;
 
 public class DriveTrain extends SubsystemBase {
-  
 
   private final CANSparkMax left1 = new CANSparkMax(kCANID_MotorLeft1, MotorType.kBrushless);
   private final CANSparkMax left2 = new CANSparkMax(kCANID_MotorLeft2, MotorType.kBrushless);
@@ -42,9 +41,6 @@ public class DriveTrain extends SubsystemBase {
   public static DifferentialDrive m_robotDrive;
 
   final AHRS navX = new AHRS(Port.kMXP);
-
-  
-  
 
   /** Creates a new ExampleSubsystem. */
   public DriveTrain() {

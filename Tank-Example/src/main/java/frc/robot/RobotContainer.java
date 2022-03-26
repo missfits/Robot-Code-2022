@@ -65,7 +65,7 @@ public class RobotContainer {
     new Turn(180),
     new DriveStraightCommand(1.0, Robot.m_driveTrain));
 */
-  public static SequentialCommandGroup m_autoStraightDriveIntake = new SequentialCommandGroup(
+  public static SequentialCommandGroup m_autoStraightDriveIntake = new SequentialCommandGroup(  // intake ball, drives, shoots
     new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
       new DriveStraightCommand(1.0, Robot.m_driveTrain),
@@ -77,15 +77,15 @@ public class RobotContainer {
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake))
   );
-  public static SequentialCommandGroup m_autoJustDrive = new SequentialCommandGroup(
+  public static SequentialCommandGroup m_autoJustDrive = new SequentialCommandGroup(  // drives only
     new  DriveStraightCommand(1.0, Robot.m_driveTrain)
-    );
-  public static SequentialCommandGroup m_autoDelayDrive = new SequentialCommandGroup(
+  );
+  public static SequentialCommandGroup m_autoDelayDrive = new SequentialCommandGroup( // waits then drives
     new  DriveStraightCommand(1.0, Robot.m_driveTrain),
     new  DelayCommand(5.0),
     new  DriveStraightCommand(1.0, Robot.m_driveTrain)
-    );
-  public static SequentialCommandGroup m_autoBasicDrive = new SequentialCommandGroup(
+  );
+  public static SequentialCommandGroup m_autoBasicDrive = new SequentialCommandGroup( // drive + shoot 
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
       new ShooterMotorCommand(3.0,Robot.m_shooter)),
@@ -128,9 +128,7 @@ public class RobotContainer {
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake))
   );
-  public static SequentialCommandGroup m_autoDoNothing = new SequentialCommandGroup(
-
-  );
+  public static SequentialCommandGroup m_autoDoNothing = new SequentialCommandGroup();
   
   public static SequentialCommandGroup m_autoTaxi = new SequentialCommandGroup(
     new ParallelCommandGroup(
@@ -140,6 +138,28 @@ public class RobotContainer {
       new  IntakeDown(Robot.m_intake),
       new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true)
   );
+
+  public static SequentialCommandGroup m_threeBallAuto = new SequentialCommandGroup(
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake)),
+    new  IntakeDown(Robot.m_intake),
+    new ParallelCommandGroup(
+      new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true), // WE NEED TO TEST ENCODER VALUES!!!
+      new IntakeMotorCommand(2.0, Robot.m_intake)),
+    new Turn(110),  
+    new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
+    new Turn(-60),
+    new DriveStraightDistance(50, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
+    new ShooterMotorCommand(0.5, Robot.m_shooter),
+    new ParallelCommandGroup(
+      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
+      new ShooterMotorCommand(3.0,Robot.m_shooter), 
+      new IntakeMotorCommand(1.0, Robot.m_intake))
+  );
+
+  
     
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {

@@ -71,18 +71,19 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.addOption("testAuto4", RobotContainer.m_autoCommand4);
     m_robotContainer.m_chooser.addOption("testAuto5", RobotContainer.m_autoCommand5);
     */
-    m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot Last)", RobotContainer.m_autoStraightDriveIntake);
-    m_robotContainer.m_chooser.setDefaultOption("Drive Forward", RobotContainer.m_autoJustDrive);
-    m_robotContainer.m_chooser.setDefaultOption("Delayed Drive", RobotContainer.m_autoDelayDrive);
-    m_robotContainer.m_chooser.setDefaultOption("Shoot then Drive", RobotContainer.m_autoBasicDrive);
-    m_robotContainer.m_chooser.setDefaultOption("Towards Wall", RobotContainer.m_autoTowardsWall);
+    m_robotContainer.m_chooser.addOption("Two Ball Auto (Shoot Last)", RobotContainer.m_autoStraightDriveIntake);
+    m_robotContainer.m_chooser.addOption("Drive Forward", RobotContainer.m_autoJustDrive);
+    m_robotContainer.m_chooser.addOption("Delayed Drive", RobotContainer.m_autoDelayDrive);
+    m_robotContainer.m_chooser.addOption("Shoot then Drive", RobotContainer.m_autoBasicDrive);
+    m_robotContainer.m_chooser.addOption("Do Nothing", RobotContainer.m_autoDoNothing);
+    m_robotContainer.m_chooser.addOption("Taxi", RobotContainer.m_autoTaxi);
+    m_robotContainer.m_chooser.addOption("Towards Wall", RobotContainer.m_autoTowardsWall);
     m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);
-    m_robotContainer.m_chooser.setDefaultOption("Do Nothing", RobotContainer.m_autoDoNothing);
-    m_robotContainer.m_chooser.setDefaultOption("Taxi", RobotContainer.m_autoTaxi);
-
+    
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
-    CameraServer.startAutomaticCapture();
+    //CameraServer.startAutomaticCapture();
+    //CameraServer.startAutomaticCapture();
     SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
     SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
     SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
