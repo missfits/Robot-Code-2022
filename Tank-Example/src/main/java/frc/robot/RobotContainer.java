@@ -7,7 +7,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.commands.*;
+import frc.robot.commands.ConveyorMotorCommand;
+import frc.robot.commands.DriveStraightCommand;
+import frc.robot.commands.DriveStraightDistance;
+import frc.robot.commands.DriveReverseCommand;
+import frc.robot.commands.DelayCommand;
+import frc.robot.commands.IntakeDown;
+import frc.robot.commands.IntakeMotorCommand;
+//import frc.robot.commands.IntakeUp;
+import frc.robot.commands.ShooterMotorCommand;
+import frc.robot.commands.Turn;
 //import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -32,7 +41,7 @@ public class RobotContainer {
       //Other 40, 47
       //Taxi - 40
 
-// intake ball (not from wall), drives to hub and shoots
+// intake ball, drives, shoots
   public static SequentialCommandGroup m_autoStraightDriveIntake = new SequentialCommandGroup(
     new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
@@ -66,7 +75,7 @@ public class RobotContainer {
       new  DriveStraightCommand(1.0, Robot.m_driveTrain)
   );
 
-  //shoot from hub, drives out + intake, drive back, shoot
+  //shoot, drive, intake, drive back, shoot
   public static SequentialCommandGroup m_autoShootFirst = new SequentialCommandGroup(
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
@@ -84,7 +93,7 @@ public class RobotContainer {
       new IntakeMotorCommand(1.0, Robot.m_intake))
   );
 
-  //shoot, drive (towards wall), intake, drive back, shoot
+  //shoot, drive (twards wall), intake, drive back, shoot
   public static SequentialCommandGroup m_autoTowardsWall = new SequentialCommandGroup(
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
@@ -115,119 +124,29 @@ public class RobotContainer {
       new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true)
   );
 
-  //shoots, drives to wall + intake, turns clockwise + drive + intake, turns to hub, drive + shoot 
+  //shoots, drives, intakes, turns, drives, intakes, turns, drives, shoots 
   public static SequentialCommandGroup m_threeBallAuto = new SequentialCommandGroup(
-    // shoots, gets ball 1
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake)),
     new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
-      new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true), // NEED TO TEST ENCODER + TURN VALUES
+      new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true), // WE NEED TO TEST ENCODER VALUES!!!
       new IntakeMotorCommand(2.0, Robot.m_intake)),
-    // gets ball 2
-    new IntakeUp(Robot.m_intake),
-    new Turn(100),
-    new IntakeDown(Robot.m_intake),
-    new ParallelCommandGroup(
-      new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
-      new IntakeMotorCommand(2.0, Robot.m_intake)),
-    // shoots
-    new IntakeUp(Robot.m_intake),
-    new Turn(-60),
-    new DriveStraightDistance(50, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
-    new ParallelCommandGroup(
-      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-      new ShooterMotorCommand(3.0,Robot.m_shooter), 
-      new IntakeMotorCommand(1.0, Robot.m_intake))
-  );
-
-  //NEED TO DECREASE MOTOR RUN TIMES TO SAVE TIME IN AUTO 
-  public static SequentialCommandGroup m_fiveBallAuto = new SequentialCommandGroup(
-    // first 3 balls = identical to 3ball auto
-    // shoots preload, gets ball 1
-    new ParallelCommandGroup(
-      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-      new ShooterMotorCommand(3.0,Robot.m_shooter), 
-      new IntakeMotorCommand(1.0, Robot.m_intake)),
-    new  IntakeDown(Robot.m_intake),
-    new ParallelCommandGroup(
-      new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true), // NEED TO TEST ENCODER VALUES
-      new IntakeMotorCommand(2.0, Robot.m_intake)),
-    // gets ball 2
-    new IntakeUp(Robot.m_intake),
     new Turn(110),  
-    new IntakeDown(Robot.m_intake),
-    new ParallelCommandGroup(
-      new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),   // true = away from hub
-      new IntakeMotorCommand(2.0, Robot.m_intake)
-    ),
-    // shoots
-    new IntakeUp(Robot.m_intake),
+    new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
     new Turn(-60),
     new DriveStraightDistance(50, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
     new ShooterMotorCommand(0.5, Robot.m_shooter),
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
-      new IntakeMotorCommand(1.0, Robot.m_intake)),
-    // goes to terminal + intakes 2
-    new DriveStraightDistance(30, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),   // drives to edge of tarmac (ideally on corner)
-    new Turn(70),
-    new DriveStraightDistance(70, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
-    new Turn(-45),  
-    new IntakeDown(Robot.m_intake), 
-    new IntakeMotorCommand(3.0, Robot.m_intake),
-    // drive back to hub + shoot
-    new IntakeUp(Robot.m_intake),
-    new Turn(45),
-    new DriveStraightDistance(70, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
-    new Turn(-70),
-    new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
-    new ParallelCommandGroup(
-      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-      new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake))
   );
 
-  // 3 ball auto + goes to terminal and intakes 2 (DOES NOT SHOOT LAST 2 BALLS)
-  public static SequentialCommandGroup m_threeBallTerminal = new SequentialCommandGroup(
-    // shoots preload, gets ball 1
-    new ParallelCommandGroup(
-      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-      new ShooterMotorCommand(3.0,Robot.m_shooter), 
-      new IntakeMotorCommand(1.0, Robot.m_intake)),
-    new  IntakeDown(Robot.m_intake),
-    new ParallelCommandGroup(
-      new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true), // NEED TO TEST ENCODER VALUES
-      new IntakeMotorCommand(2.0, Robot.m_intake)),
-    // gets ball 2
-    new IntakeUp(Robot.m_intake),
-    new Turn(110),  
-    new IntakeDown(Robot.m_intake),
-    new ParallelCommandGroup(
-      new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),   // true = away from hub
-      new IntakeMotorCommand(2.0, Robot.m_intake)
-    ),
-    // shoots
-    new IntakeUp(Robot.m_intake),
-    new Turn(-60),
-    new DriveStraightDistance(50, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
-    new ShooterMotorCommand(0.5, Robot.m_shooter),
-    new ParallelCommandGroup(
-      new ConveyorMotorCommand(3.0, Robot.m_conveyor),
-      new ShooterMotorCommand(3.0,Robot.m_shooter), 
-      new IntakeMotorCommand(1.0, Robot.m_intake)),
-    // goes to terminal + intakes 2
-    new DriveStraightDistance(30, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),   // drives to edge of tarmac (ideally on corner)
-    new Turn(70),
-    new DriveStraightDistance(70, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
-    new Turn(-45),  
-    new IntakeDown(Robot.m_intake), 
-    new IntakeMotorCommand(3.0, Robot.m_intake)
-  );
   
+    
   // The container for the robot. Contains subsystems, OI devices, and commands. 
   public RobotContainer() {
     // Configure the button bindings
