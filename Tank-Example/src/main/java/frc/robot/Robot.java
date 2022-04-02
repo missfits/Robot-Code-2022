@@ -39,8 +39,7 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   //initalize autonomousCommands, RobotContainer, OI, and Timer
   private Command m_autonomousCommand;
-  private RobotContainer m_robotContainer;
-  public static OI oi = new OI();
+  private RobotContainer m_robotContainer = new RobotContainer();
   public Timer t = new Timer();
   
   //creating all the motors 
@@ -49,6 +48,8 @@ public class Robot extends TimedRobot {
   public static Climber m_climber = new Climber();
   public static Shooter m_shooter = new Shooter();
   public static DriveTrain m_driveTrain = new DriveTrain();
+
+  public static OI oi = new OI();
   
   //private final PIDController PID = new PIDController(0.3, 0, 0); //unused PID Controller
 
@@ -64,7 +65,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
+
   
     // Sendable Chooser for autonomous - allows us to select a routine
     // Add commands to the autonomous command chooser
