@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.addOption("Taxi", RobotContainer.m_autoTaxi); //shoots, taxis out
     m_robotContainer.m_chooser.addOption("Towards Wall", RobotContainer.m_autoTowardsWall); //shoot, drive (twards wall), intake, drive back, shoot
     //default option when code is deployed will be the one that runs 
-    m_robotContainer.m_chooser.setDefaultOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);   //(RELIABLE TWO BALL AUTO) shoot, drive, intake, drive back, shoot
+    m_robotContainer.m_chooser.addOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);   //(RELIABLE TWO BALL AUTO) shoot, drive, intake, drive back, shoot
     
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
