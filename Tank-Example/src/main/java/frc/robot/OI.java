@@ -23,8 +23,8 @@ public class OI {
     public Joystick leftJoy = new Joystick(kControllerID_DriveLeft);
     public Joystick rightJoy = new Joystick(kControllerID_DriveRight);
     //creates solenoids
-    DoubleSolenoid exampleDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
-    DoubleSolenoid exampleDoublePH = new DoubleSolenoid(9, PneumaticsModuleType.REVPH, 4, 5);
+    //DoubleSolenoid exampleDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
+    //DoubleSolenoid exampleDoublePH = new DoubleSolenoid(9, PneumaticsModuleType.REVPH, 4, 5);
 
 
     //creating buttons for the joysticks

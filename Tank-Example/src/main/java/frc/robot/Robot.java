@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-//import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cameraserver.CameraServer;
 //import edu.wpi.first.cscore.UsbCamera;
 //import java.util.function.BooleanSupplier;
 //import edu.wpi.first.wpilibj2.command.button.Button;
@@ -83,8 +83,8 @@ public class Robot extends TimedRobot {
     
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
-    //CameraServer.startAutomaticCapture();
-    //CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
     SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
     SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
     SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
