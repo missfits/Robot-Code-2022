@@ -17,7 +17,12 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.cameraserver.CameraServer;
-//import edu.wpi.first.cscore.UsbCamera;
+// import edu.wpi.first.cscore.CvSink;
+// import edu.wpi.first.cscore.CvSource;
+// import edu.wpi.first.cscore.MjpegServer;
+// import edu.wpi.first.cscore.UsbCamera;
+// import edu.wpi.first.cscore.VideoMode.PixelFormat;
+// import edu.wpi.first.wpilibj.TimedRobot;
 //import java.util.function.BooleanSupplier;
 //import edu.wpi.first.wpilibj2.command.button.Button;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -79,6 +84,9 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.addOption("Do Nothing", RobotContainer.m_autoDoNothing); //does nothing
     m_robotContainer.m_chooser.addOption("Taxi", RobotContainer.m_autoTaxi); //shoots, taxis out
     m_robotContainer.m_chooser.addOption("Towards Wall", RobotContainer.m_autoTowardsWall); //shoot, drive (twards wall), intake, drive back, shoot
+    m_robotContainer.m_chooser.addOption("3 Ball Auto", RobotContainer.m_threeBallAuto);
+    m_robotContainer.m_chooser.addOption("5 Ball Auto", RobotContainer.m_fiveBallAuto);
+    m_robotContainer.m_chooser.addOption("3 Ball terminal", RobotContainer.m_threeBallTerminal);
     //default option when code is deployed will be the one that runs 
     m_robotContainer.m_chooser.addOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);   //(RELIABLE TWO BALL AUTO) shoot, drive, intake, drive back, shoot
     
@@ -86,6 +94,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(m_robotContainer.m_chooser);
     CameraServer.startAutomaticCapture();
     CameraServer.startAutomaticCapture();
+
+
     SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());
     SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
     SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
@@ -110,6 +120,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Left Encoder", m_driveTrain.left1Encoder.getPosition());
     SmartDashboard.putNumber("Right Encoder", m_driveTrain.right1Encoder.getPosition());
     SmartDashboard.putNumber("Climber Encoder", m_climber.climberEncoder.getPosition());
+    SmartDashboard.putData(m_robotContainer.m_chooser);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
