@@ -84,16 +84,16 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_chooser.addOption("Do Nothing", RobotContainer.m_autoDoNothing); //does nothing
     m_robotContainer.m_chooser.addOption("Taxi", RobotContainer.m_autoTaxi); //shoots, taxis out
     m_robotContainer.m_chooser.addOption("Towards Wall", RobotContainer.m_autoTowardsWall); //shoot, drive (twards wall), intake, drive back, shoot
-    m_robotContainer.m_chooser.addOption("3 Ball Auto", RobotContainer.m_threeBallAuto);
-    m_robotContainer.m_chooser.addOption("5 Ball Auto", RobotContainer.m_fiveBallAuto);
-    m_robotContainer.m_chooser.addOption("3 Ball terminal", RobotContainer.m_threeBallTerminal);
+    m_robotContainer.m_chooser.addOption("3 Ball Auto", RobotContainer.m_threeBallAuto); // shoots, gets ball 1, gets ball 2, shoots
+    m_robotContainer.m_chooser.addOption("5 Ball Auto", RobotContainer.m_fiveBallAuto); //shoots preload, gets ball 1, gets ball 2, shoots, goes to terminal + intakes 2, drive back to hub + shoot
+    m_robotContainer.m_chooser.addOption("3 Ball terminal", RobotContainer.m_threeBallTerminal); // shoots preload, gets ball 1, gets ball 2, shoots, goes to terminal + intakes 2
     //default option when code is deployed will be the one that runs 
     m_robotContainer.m_chooser.addOption("Two Ball Auto (Shoot First)", RobotContainer.m_autoShootFirst);   //(RELIABLE TWO BALL AUTO) shoot, drive, intake, drive back, shoot
     
     // Put the chooser on the dashboard
     SmartDashboard.putData(m_robotContainer.m_chooser);
     CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
+    //CameraServer.startAutomaticCapture();
 
 
     SmartDashboard.putNumber("Shooter Speed", m_shooter.getSpeed());

@@ -102,19 +102,17 @@ public class OI {
 
 
 
-      //buttons according to Elizabeth
-      //intake motor
-      Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
      
       //sequential command group for the Bbutton
       SequentialCommandGroup fullShootCommand= new SequentialCommandGroup(
-        new ShooterMotorCommand(0.25, Robot.m_shooter), 
-        new ParallelCommandGroup(
-          new ConveyorMotorCommand(0.5, Robot.m_conveyor),new ShooterMotorCommand(0.5, Robot.m_shooter)),
-          new ParallelCommandGroup(
-      new ConveyorMotorCommand(0.5, Robot.m_conveyor),
-      new ShooterMotorCommand(0.5, Robot.m_shooter),
-      new IntakeMotorCommand(0.5, Robot.m_intake))
+      // new ShooterMotorCommand(0.25, Robot.m_shooter), 
+      // new ParallelCommandGroup(
+      //   new ConveyorMotorCommand(0.5, Robot.m_conveyor),
+      //   new ShooterMotorCommand(0.5, Robot.m_shooter)),
+      new ParallelCommandGroup(
+        new ConveyorMotorCommand(0.5, Robot.m_conveyor),
+        new ShooterMotorCommand(0.5, Robot.m_shooter),
+        new IntakeMotorCommand(0.5, Robot.m_intake))
       );
 
       SequentialCommandGroup shootCommand = new SequentialCommandGroup(
@@ -123,6 +121,10 @@ public class OI {
       new ConveyorMotorCommand(Robot.m_conveyor),
       new ShooterMotorCommand(Robot.m_shooter))
       );
+      
+      //buttons according to Elizabeth
+      //intake motor
+      Abutton.whileHeld((Command) new IntakeMotorCommand(Robot.m_intake), true);
       //shooting motor + vertical conveyor + intake
       Bbutton.whileHeld((Command) fullShootCommand);
       
@@ -139,10 +141,10 @@ public class OI {
       RBbutton.whileHeld((Command) new ClimberDownCommand(Robot.m_climber), true);
       
       //intake down
-      Xbutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
+      Xbutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
       
       //intake up
-      Ybutton.whileHeld((Command) new IntakeUp(Robot.m_intake), true);
+      Ybutton.whileHeld((Command) new IntakeDown(Robot.m_intake), true);
 
       //BACKUP BUTTONS ON THE JOYSTICKS
      

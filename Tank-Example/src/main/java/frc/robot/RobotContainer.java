@@ -72,7 +72,7 @@ public class RobotContainer {
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake)),
-      new  IntakeDown(Robot.m_intake),
+    new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
       new DriveStraightDistance(40, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
       new IntakeMotorCommand(2.0, Robot.m_intake)),
@@ -90,11 +90,11 @@ public class RobotContainer {
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),
       new ShooterMotorCommand(3.0,Robot.m_shooter), 
       new IntakeMotorCommand(1.0, Robot.m_intake)),
-      new  IntakeDown(Robot.m_intake),
+    new  IntakeDown(Robot.m_intake),
     new ParallelCommandGroup(
       new DriveStraightDistance(35, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, true),
       new IntakeMotorCommand(2.5, Robot.m_intake)),
-      new DriveStraightDistance(42, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
+    new DriveStraightDistance(42, Robot.m_driveTrain.left1Encoder, Robot.m_driveTrain.right1Encoder, Robot.m_driveTrain, false),
     new ShooterMotorCommand(0.5, Robot.m_shooter),
     new ParallelCommandGroup(
       new ConveyorMotorCommand(3.0, Robot.m_conveyor),

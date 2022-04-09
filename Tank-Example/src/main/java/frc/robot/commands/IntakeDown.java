@@ -38,7 +38,7 @@ public class IntakeDown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Robot.m_intake.pneumaticReverse();
+      Robot.m_intake.pneumaticForward();
   }
 
   // Called once the command ends or is interrupted.
