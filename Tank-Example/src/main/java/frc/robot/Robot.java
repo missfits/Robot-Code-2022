@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Climber Encoder", m_climber.climberEncoder.getPosition());
     SmartDashboard.putData(m_robotContainer.m_chooser);
   }
-
+//example edit for stella! <3
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}
