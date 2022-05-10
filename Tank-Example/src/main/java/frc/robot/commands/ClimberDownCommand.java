@@ -33,7 +33,8 @@ public class ClimberDownCommand extends CommandBase {
   //theoretically keeps the climber retracted
   @Override
   public void execute() {
-      Robot.m_climber.climberDown();
+      //Robot.m_climber.climberDown();
+      Robot.m_climber.climberDownPID();
   }
 
   // Called once the command ends or is interrupted.
